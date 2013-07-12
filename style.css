@@ -1,0 +1,61 @@
+body {
+	margin:20px 40px;
+	font-size:12px;
+	font-family: "MS Reference Sans Serif", "Microsoft Sans Serif", "MS Serif";
+	font-size:12px;
+	border:1px solid #000;
+	background: url(images/bckg.jpg) repeat-x #8fe909 ;
+	color: #000000;
+}
+a { color:#FFFFFF; text-decoration:none;}
+a:hover { text-decoration:none;  color:yellow;}
+p { padding: 0 10px 5px 10px; }
+h1 { text-transform:uppercase; font-size:18px; color:#fff; }
+h1 span { background-color:#477b1d; padding:0 10px;}
+.PD1 {FONT-SIZE: 12px; COLOR: white; FONT-FAMILY: ms sans serif,sans-serif }
+.PD2 {FONT-SIZE: 14px; COLOR: red; FONT-FAMILY: ms sans serif,sans-serif }
+.PD3 {FONT-SIZE: 13px; COLOR: black; FONT-FAMILY: ms sans serif,sans-serif }
+.PD4 {FONT-SIZE: 13px; COLOR: #0099FF; FONT-FAMILY: ms sans serif,sans-serif }
+.PD5 {FONT-SIZE: 20px; COLOR: black; FONT-FAMILY: ms sans serif,sans-serif }
+.PD6 {FONT-SIZE: 14px; COLOR: #FFFF99; FONT-FAMILY: ms sans serif,sans-serif }
+.PD8 {FONT-SIZE: 13px; COLOR: #0099FF; FONT-FAMILY: ms sans serif,sans-serif; font-style: normal; font-weight: bold; }
+.PD9 {FONT-SIZE: 16px; COLOR: black; FONT-FAMILY: ms sans serif,sans-serif; font-style: normal; }
+.PD10 {FONT-SIZE: 13px; COLOR: white; FONT-FAMILY: ms sans serif,sans-serif; font-style: normal; }
+.PD11 {FONT-SIZE: 16px; COLOR: white; FONT-FAMILY: ms sans serif,sans-serif }
+.PD12 {FONT-SIZE: 30px; COLOR: #FFFFFF; FONT-FAMILY: microsoft sans serif,sans-serif; font-style: normal; font-weight: bold; }
+.PD13 {FONT-SIZE: 16px; COLOR: #1FA2EF; FONT-FAMILY: microsoft sans serif,sans-serif; font-style: normal; font-weight: bold; }
+.PD14 {FONT-SIZE: 15px; COLOR: white; FONT-FAMILY: microsoft sans serif,sans-serif; font-style: normal; }
+.PD15 {FONT-SIZE: 14px; COLOR: white; FONT-FAMILY: microsoft sans serif,sans-serif; font-style: normal; }
+#top { height:30px; background-color:#477b1d;border-bottom:4px solid #000; }
+#name { float:left; border-left:20px solid #70c32e; border-right:20px solid #70c32e;}
+#name a{ color:#fff; font-weight:bold; font-size:24px;  background-color:#70c32e; text-decoration:none;}
+#split { float:left; height:30px; width:20px; border-left:3px solid #000000;}
+#slogan { float:left; color:#fff; padding:3px 0 0 10px; FONT-SIZE: 13px;}
+#showuser { float:left; color:#f9f; padding:3px 0 0 10px; FONT-SIZE: 13px;text-align: right;}
+#contact_us{ float:right; background-color:#7abb37; height:20px;  padding:2px 5px;}
+#contact_us a { color:#fff; text-transform:uppercase; text-decoration:none; }
+#logo { background:url(images/head_bckg.jpg); background-repeat:no-repeat; background-color:#78ce31;}
+#logo_text { float:right; width:200px; height:80px; background-color:#70c32e; margin:40px 20px 53px 0; font-family: microsoft sans serif, Tahoma, Arial; font-size:13px; color:#fff; padding:10px; }
+#menu { background:#70c32e; height:23px; width:1200px; margin: 0 auto; clear:both; border:1px solid #a8f534; text-align:center;  color:#fff; padding-top:4px; margin-top:2%; margin-left:2.5%;}
+#menu a { color:#fff; font-size:13px; text-transform:uppercase; font-weight:normal; text-decoration:none; margin:0 20px; margin-top:3px;}
+#menu a:hover{ color:#d4ffa1}
+#submenu { background:#70c32e; height:23px; width:800px; margin: 0 auto; clear:both; border:1px solid #a8f534; text-align:center;  color:#fff; padding-top:4px; margin-left:15%;}
+#submenu a { color:#fff; font-size:13px; text-transform:uppercase; font-weight:normal; text-decoration:none; margin:0 20px; margin-top:3px;}
+#submenu a:hover{ color:#d4ffa1}
+.item img { background-color:#fff; padding:6px; border:1px solid #d0d0d0;}
+.description { display:block; float:right; width:220px; padding: 10px 20px 20px 0; line-height:12px; font-family:Tahoma, Arial;}
+p.additional { margin:0 10px; color:#9c9c9c; font-size:10px; line-height:12px; border-top:1px solid #bdbdbd; padding: 10px 0; font-weight:normal; font-family:Tahoma, Arial;}
+
+#text { margin: 0 292px 0 0;  padding:10px;}
+#text li { list-style:none; padding-left:20px; background:url(images/li.gif) no-repeat 0px 4px;line-height:18px;}
+#sidebar { float:right; width:245px; padding: 20px 20px 0 30px; font-size:10px; }
+#sidebar a{ font-weight:bold; }
+#sidebar h2 { margin:0; padding:0 0 20px 0; text-transform:uppercase; color:#000; font-size:18px;}
+
+#main { float:left; background:url(images/sidebar_bckg.gif) no-repeat top right #fff; }
+#footer { background:url(images/footer_bckg.gif) repeat-x #000; height:55px; clear:both;  }
+#left_footer { float:left; padding:20px 0 0 210px; color:#fff; font-size:13px;}
+#left_footer a { color:#fff;}
+#left_footer a:hover { text-decoration:none;}
+#right_footer { float:right;  padding:20px 30px 0 0; color:#fff;  font-size:12px; text-align:right;}
+#right_footer a { color:#fff;}

@@ -1,0 +1,1 @@
+<img border=1 src="cus_image.php?idcompany=<?echo $_GET[idcompany];?>" width=100% height=100%></img>

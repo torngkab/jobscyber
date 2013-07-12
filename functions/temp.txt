@@ -1,0 +1,1 @@
+<img src=employee_show_image.php?resumeindex=<?=$_SESSION[resumeindex]; ?> border=0 width=185 height=180>
