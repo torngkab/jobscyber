@@ -18,13 +18,13 @@ $psize=filesize($mapfile_name);
      
 $Data=addslashes(fread(fopen($mapfile_name,"r"),$psize));											  
 $SQL="update customer set map='$Data' where username='$Gusr' and password='$Gpw'" ;
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL);
 unlink($mapfile_name); 
 
 $SQL2 = "Select *  FROM  customer  WHERE  username ='$Gusr'  and password='$Gpw'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL2);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL2);
 while ($row=mysql_fetch_array($result)) {
           $MMB = $row[map];
                                                                 }

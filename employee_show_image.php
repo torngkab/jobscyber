@@ -3,8 +3,8 @@
 header("Content-type: image/jpeg");
 include ("Allfunction.inc"); 
 $SQL = "Select *  FROM  employee_resume_th  WHERE  idresume ='".$_GET['idresume']."'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL);
 
 //echo $_GET['idresume'];
 

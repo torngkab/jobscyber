@@ -14,16 +14,16 @@
 <? echo gheader(th,0,F); 
 
 $SQL1 = "Select *  FROM  customerbuffer  WHERE username ='$_SESSION[bufferlogin]' and password ='$_SESSION[bufferpassword]'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result1= mysql_db_query($databasename,$SQL1);
+$result1= mysql_query($SQL1);
 while ($row1=mysql_fetch_array($result1)) {   //  start  while 1
 $Xcompanyname= $row1['companyname'];
                                                                            }  //  end while 1
 
 if   ($Xcompanyname != "")   {   //  start  if 1
 $SQL2 = "Select *  FROM  customerbuffer  WHERE username ='$_SESSION[bufferlogin]' and password ='$_SESSION[bufferpassword]'";
-$result2= mysql_db_query($databasename,$SQL2);
+$result2= mysql_query($SQL2);
 while ($row2=mysql_fetch_array($result2)) {   //  start  while 2
 $_SESSION[idcompany] = $row2['idcompany'];
 $_SESSION[companyname]= $row2['companyname'];
@@ -57,7 +57,7 @@ $_SESSION[contactname_EN] = $row2['contactname_en'];
                                                            }   //  end  if  1
                                                                   
 $SQL3 = "Select *  FROM  product  WHERE idproduct ='$_SESSION[jobpromotion]'";
-$result3= mysql_db_query($databasename,$SQL3);
+$result3= mysql_query($SQL3);
 while ($row3=mysql_fetch_array($result3)) {   //  start  while 3
 $_SESSION[totalresume]= $row3['totalresume'];
                                                                            }   //  end  while 3
@@ -86,31 +86,31 @@ echo  main_program();
 						</tr>
                         <tr>
                         <td width=130><div align=left><font class="PD2">*</font>&nbsp;<font class="PD3">ชื่อบริษัท</font></div></td><form action="customersaveoredit.php" method="post">
-                        <td><div align=left><input type="text" class="PD3" name="companyname" size="25" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[companyname])  ?>> </div></td>
+                        <td><div align=left><input type="text" class="PD3" name="companyname" size="25" value=<?echo $_SESSION[companyname]; ?>> </div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>ที่อยู่</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name="address" size=12 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[address])  ?>></div></td>
+                        <td><div align=left><input type="text" class="PD3" name="address" size=12 value=<?echo $_SESSION[address]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left>&nbsp;&nbsp; <font class=PD3>หมู่</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name=moo size=2 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[moo])  ?>></div></td>
+                        <td><div align=left><input type="text" class="PD3" name=moo size=2 value=<?echo $_SESSION[moo]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>ซอย</font></div></td>
-                        <td><div align=left><input type=text class="PD3" name=soi size=12 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[soi])  ?>></div></td>
+                        <td><div align=left><input type=text class="PD3" name=soi size=12 value=<?echo $_SESSION[soi]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>ถนน</font></div></td>
-                        <td><div align=left><input type=text class="PD3" name=street size=12 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[street])  ?>></div></td>
+                        <td><div align=left><input type=text class="PD3" name=street size=12 value=<?echo $_SESSION[street]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>ตำบล</font></div></td>
-                        <td><div align=left><input type=text class="PD3" name=tambon size=12 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[tambon])  ?>></div></td>
+                        <td><div align=left><input type=text class="PD3" name=tambon size=12 value=<?echo $_SESSION[tambon]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>อำเภอ</font></div></td>
-                        <td><div align=left><input type=text class="PD3" name=umphur size=12 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[umphur]) ?>></div></td>
+                        <td><div align=left><input type=text class="PD3" name=umphur size=12 value=<?echo $_SESSION[umphur]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>จังหวัด</font></div></td>
@@ -207,31 +207,31 @@ echo  main_program();
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class="PD2">*</font>&nbsp;<font class="PD3">รหัสไปรษณีย์</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name="postcode" size="5"value=<?=ereg_replace(" ","&nbsp;",$_SESSION[postcode])  ?>></div></td>
+                        <td><div align=left><input type="text" class="PD3" name="postcode" size="5"value=<?echo $_SESSION[postcode]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp; <font class=PD3>เบอร์โทรศัพท์</font></div></td>
-                        <td vlaign=middle><div align=left><input type="text" class="PD3" name="tel" size=30 value=<?=ereg_replace(" ","&nbsp;",$_SESSION[telephone])  ?> ></div></td>
+                        <td vlaign=middle><div align=left><input type="text" class="PD3" name="tel" size=30 value=<?echo $_SESSION[telephone]; ?> ></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left>&nbsp;&nbsp; <font class="PD3">Fax</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name="fax" size="12" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[fax])  ?>></div></td>
+                        <td><div align=left><input type="text" class="PD3" name="fax" size="12" value=<?echo $_SESSION[fax]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class="PD2">*</font>&nbsp;<font class="PD3">E-mail</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name="email" size="38" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[email])  ?>></div></td>
+                        <td><div align=left><input type="text" class="PD3" name="email" size="38" value=<?echo $_SESSION[email]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left>&nbsp;&nbsp;<font class="PD3"> Website</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name="website" size="45" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[website])  ?> ></div></td>
+                        <td><div align=left><input type="text" class="PD3" name="website" size="45" value=<?echo $_SESSION[website]; ?> ></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>คำอธิบายเกี่ยวกับบริษัท</font></div></td>
-                        <td><div align=left><textarea class="PD3" name="description" cols="90" rows="12" wrap="off"><?=ereg_replace(" ","&nbsp;",$_SESSION[description])  ?></textarea></div></td>
+                        <td><div align=left><textarea class="PD3" name="description" cols="90" rows="12" wrap="off"><?echo $_SESSION[description]; ?></textarea></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>ชื่อผู้ติดต่อ</font></div></td>
-                        <td><div align=left><input type="text" class="PD3" name="contactname" size="45" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[contactname]) ?>></div></td>
+                        <td><div align=left><input type="text" class="PD3" name="contactname" size="45" value=<?echo $_SESSION[contactname]; ?>></div></td>
                         </tr>
                         <!--<tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>วิธีการติดต่อ</font></div></td>
@@ -252,39 +252,39 @@ echo  main_program();
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp;<font class=PD3>Company name</font></div></td>
-                        <td><div align=left><input name="companyname_EN" type="text" class="PD3" size="45" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[companyname_EN])  ?>></div></td>
+                        <td><div align=left><input name="companyname_EN" type="text" class="PD3" size="45" value=<?echo $_SESSION[companyname_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>Address</font></div></td>
-                        <td><div align=left><input name=address_EN type=text class="PD3" size="12" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[address_EN])  ?>></div></td>
+                        <td><div align=left><input name=address_EN type=text class="PD3" size="12" value=<?echo $_SESSION[address_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left>&nbsp;&nbsp <font class=PD3>Moo</font></div></td>
-                        <td><div align=left><input name=moo_EN type=text class="PD3" size="2" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[moo_EN])  ?>></div></td>
+                        <td><div align=left><input name=moo_EN type=text class="PD3" size="2" value=<?echo $_SESSION[moo_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>Soi</font></div></td>
-                        <td><div align=left><input name=soi_EN type=text class="PD3" size="12" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[soi_EN])  ?>></div></td>
+                        <td><div align=left><input name=soi_EN type=text class="PD3" size="12" value=<?echo $_SESSION[soi_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>Street</font></div></td>
-                        <td><div align=left><input name=street_EN type=text class="PD3" size="12" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[street_EN])  ?>></div></td>
+                        <td><div align=left><input name=street_EN type=text class="PD3" size="12" value=<?echo $_SESSION[street_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>Tambon</font></div></td>
-                        <td><div align=left><input name=tambon_EN type=text class="PD3" size="12" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[tambon_EN])  ?>></div></td>
+                        <td><div align=left><input name=tambon_EN type=text class="PD3" size="12" value=<?echo $_SESSION[tambon_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>umphur</font></div></td>
-                        <td><div align=left><input name=umphur_EN type=text class="PD3" size="12" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[umphur_EN])  ?>></div></td>
+                        <td><div align=left><input name=umphur_EN type=text class="PD3" size="12" value=<?echo $_SESSION[umphur_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>Profile</font></div></td>
-                        <td><div align=left><textarea name="profile_EN" cols="90" rows="12" class="PD3" wrap="none"><?=ereg_replace(" ","&nbsp;",$_SESSION[profile_EN])  ?></textarea></div></td>
+                        <td><div align=left><textarea name="profile_EN" cols="90" rows="12" class="PD3" wrap="none"><?echo $_SESSION[profile_EN]; ?></textarea></div></td>
                         </tr>
                         <tr>
                         <td width=130><div align=left><font class=PD2>*</font>&nbsp<font class=PD3>Contact name</font></div></td>
-                        <td><div align=left><input  size="45" name="contactname_EN" type="text" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[contactname_EN])  ?>></div></td>
+                        <td><div align=left><input  size="45" name="contactname_EN" type="text" class="PD3" value=<?echo $_SESSION[contactname_EN]; ?>></div></td>
                         </tr>
                         <tr>
                         <td width=130></td>

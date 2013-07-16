@@ -3,9 +3,9 @@
 <? include ("Allfunction.inc");  ?>
 <?
 	$SQL = "Select *  FROM  customer_buffer INNER JOIN product ON customer_buffer.jobpromotion = product.idproduct WHERE  username ='$_SESSION[bufferlogin]'";
-	mysql_connect($host,$user,$password);
+	mysql_connect($host,$user,$password);mysql_select_db($databasename);
 	mysql_query("SET NAMES TIS620");
-	$result= mysql_db_query($databasename,$SQL);
+	$result= mysql_query($SQL);
 	while ($row=mysql_fetch_array($result)) {
 		$promotion = $row['totalresume'];
 	}

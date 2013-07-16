@@ -4,8 +4,8 @@ $var_email=$_POST['yourmail'];
 $var_pincode=$_POST['pincode'];
 												    
 $SQL = "Select *  FROM  customer  WHERE email ='$var_email'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
           $jobpromotionvalue = $row['jobpromotion'];
           $signuptime = $row['signuptime'];
@@ -25,16 +25,16 @@ $encodesignupdate=gregoriantojd($month2,$day2,$year2);
 
 $have_email = "bad_email";
 $SQL1 = "Select *  FROM  customer  WHERE  email ='$var_email'";
-mysql_connect($host,$user,$password);
-$result1= mysql_db_query($databasename,$SQL1);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result1= mysql_query($SQL1);
 while ($row1=mysql_fetch_array($result1)) {
           $have_email = "have_email";
                                                                     }
 												    
 $have_pincode = "bad_pincode";
 $SQL2 = "Select *  FROM  decoder  WHERE  pincode ='$var_pincode'";
-mysql_connect($host,$user,$password);
-$result2= mysql_db_query($databasename,$SQL2);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result2= mysql_query($SQL2);
 while ($row2=mysql_fetch_array($result2)) {
           $have_pincode = "have_pincode";
                                                                     }

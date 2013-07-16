@@ -14,8 +14,8 @@ copy($uploadimage,$uploadimage_name);
 $psize=filesize($uploadimage_name);
 $Data=addslashes(fread(fopen($uploadimage_name,"r"),$psize));											  
 $SQL="update  employee_resume_th set imageemployee='$Data' where idresume='$_GET[resumeindex]'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL);
 unlink($uploadimage_name); 
 		    
 echo $_GET['resumeindex'];
@@ -30,8 +30,8 @@ $image_name = addslashes($_FILES['uploadimage']['name']);
 $image_size = getimagesize($_FILES['uploadimage']['tmp_name']);
 
 $SQL="update  employee_resume_th set imageemployee='$image' where idresume='$_SESSION[resumeindex]'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL);
 
 //echo "<img src=employee_show_image.php?idresume=$_SESSION[resumeindex]>";
 

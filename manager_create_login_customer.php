@@ -29,9 +29,9 @@
 <TD><div align='left'><select name=position>
 <?
 $SQL = "Select *  FROM  product order by idproduct asc";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {    ?>
           <option value=<?=$row[idproduct];  ?>><?=$row[productname];  ?></option>
 <?                                                                  }    ?>

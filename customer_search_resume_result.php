@@ -2,7 +2,7 @@
 session_start();
 if  ($_SESSION['promotion'] == "T")   {
 include ("Allfunction.inc");
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 
 $_SESSION[zdepartment] = $_GET[department];
@@ -55,7 +55,7 @@ for ($i=1;$i<=25;$i++)  {
                                                                         }
                                        }
 $BSQL = "Select *  FROM  department order by id asc";
-$resultB= mysql_db_query($databasename,$BSQL);
+$resultB= mysql_query($BSQL);
 $j = 1; 
 while ($rowb=mysql_fetch_array($resultB))    {    //   start while B   ?>
 <option value=<?=$rowb['id'];  ?> &nbsp; <?=$Dpoint[$j];  ?>><?=$rowb['departmentname'];  ?>
@@ -210,7 +210,7 @@ function test(){
 <select  name="umphur" id="umphur" class="PD3" onchange="test();">
 <?
 $CSQL = "Select *  FROM  umphur where id_index = '".$_GET[province]."'order by id,name_th asc";
-$resultC= mysql_db_query($databasename,$CSQL);
+$resultC= mysql_query($CSQL);
 $j = 0;
 while ($rowc=mysql_fetch_array($resultC))    {      //   start while C   
 ?>
@@ -367,7 +367,7 @@ $maxcount = count($buffername);
 $ASQL = "Select *  FROM  employee_resume_th where (departmentid".$geek1."'$_GET[department]') and gender".$sign1."'$_GET[gender]' and edt1_degree".$sign2."'$_GET[degree]' and province".$sign3."'$_GET[province]' and district".$sign4."'$_GET[umphur]' and yearexp".$sign5."'$_GET[expyear]' and (intsalary1".$geek6."'$_GET[salaryvalue]' or intsalary2".$geek6."'$_GET[salaryvalue]' or intsalary3".$geek6."'$_GET[salaryvalue]')";
 if   (checkblankstring($_GET[searchname]) == "true")   {
      $GSQL = "Select *  FROM  employee_resume_th where (departmentid".$geek1."'$_GET[department]') and gender".$sign1."'$_GET[gender]' and edt1_degree".$sign2."'$_GET[degree]' and province".$sign3."'$_GET[province]' and district".$sign4."'$_GET[umphur]' and yearexp".$sign5."'$_GET[expyear]' and (intsalary1".$geek6."'$_GET[salaryvalue]' or intsalary2".$geek6."'$_GET[salaryvalue]' or intsalary3".$geek6."'$_GET[salaryvalue]') order by resumeupdate desc limit $HPG,$perpage";
-     $resultA= mysql_db_query($databasename,$ASQL);
+     $resultA= mysql_query($ASQL);
     $totalrec = mysql_num_rows($resultA);   	
                                                                           }
 else  {  $BuffSQL = "";
@@ -380,11 +380,11 @@ else  {  $BuffSQL = "";
 	                                                     }  // end for loop
 	       $MSQL= $ASQL.$BuffSQL;
 	       $GSQL= $MSQL."order by resumeupdate desc limit $HPG,$perpage";
-	       $resultM= mysql_db_query($databasename,$MSQL);
+	       $resultM= mysql_query($MSQL);
            $totalrec = mysql_num_rows($resultM);   
         }
 
-$resultG= mysql_db_query($databasename,$GSQL);                                                                                                                        
+$resultG= mysql_query($GSQL);                                                                                                                        
                    
 while ($rowa=mysql_fetch_array($resultG))    {  ?> 
                                                                   

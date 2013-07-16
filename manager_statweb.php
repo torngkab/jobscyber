@@ -15,9 +15,9 @@
 
 <?
 $SQL = "Select *  FROM  dddcounter order by datecount asc";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 $set_conn = mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 $nrow=mysql_num_rows($result);
 ?>
 <select>

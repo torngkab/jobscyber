@@ -3,9 +3,9 @@
 include("Allfunction.inc");
 $SQL = "update employee_resume_th set computerskill = '$_SESSION[dcomputerskill]'";
 $SQL = $SQL."where idresume = '$_SESSION[resumeindex]'"; 
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 ?>
 <?
     if  ($_POST['xubmit'] == "ดูรายการที่เลือก")   {    //  start  if  1

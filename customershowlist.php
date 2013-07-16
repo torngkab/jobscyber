@@ -140,11 +140,11 @@ switch ($_POST['status'])  {
                                               }						   
 $SQL1 = "Select *  FROM  customer";
 
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result1= mysql_db_query($databasename,$SQL1);
+$result1= mysql_query($SQL1);
 $totalrec = mysql_num_rows($result1);
-$result2= mysql_db_query($databasename,$SQL2);
+$result2= mysql_query($SQL2);
 $BMcount = 1;
 while ($row=mysql_fetch_array($result2)) {    ?>
 <?  if  ($_POST['status'] == 4)  {  $countermoney = $countermoney + moneyofjobtype($row['jobpromotion']) + ((moneyofjobtype($row['jobpromotion'])*0.07)); }  ?>

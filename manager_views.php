@@ -11,9 +11,9 @@
 <?include("header_manager.php");?>
 <?
 	$sql1 = "select * from product order by idproduct asc";
-	$conn = mysql_connect($host,$user,$password);
+	$conn = mysql_connect($host,$user,$password);mysql_select_db($databasename);
 	$set_conn = mysql_query("SET NAMES TIS620");
-	$result1= mysql_db_query($databasename,$sql1);
+	$result1= mysql_query($sql1);
 ?>	
 	<table border=1 align='center'>
 	<tr>

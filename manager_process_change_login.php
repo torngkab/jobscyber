@@ -12,28 +12,28 @@ $_SESSION['newpassword'] = $_POST['newpassword'];
 $_SESSION['repassword'] = $_POST['repassword'];
 
 $SQL = "Select *  FROM  manager where kkusername='$_POST[oldusername]'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result))   {        //   start while 1
           $OLD_manager_login = $row['email'];
                                                                           }       //    end while 1
 
 $SQL2 = "Select *  FROM  manager  WHERE  kkpassword ='$_POST[oldpassword]'";
-mysql_connect($host,$user,$password);
-$result2= mysql_db_query($databasename,$SQL2);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result2= mysql_query($SQL2);
 while ($rowz=mysql_fetch_array($result2)) {
           $OLD_manager_password = $rowz["email"];
                                                                        }
 $SQL3 = "Select *  FROM  manager  WHERE  kkusername ='$_POST[newusername]'";
-mysql_connect($host,$user,$password);
-$result3= mysql_db_query($databasename,$SQL3);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result3= mysql_query($SQL3);
 while ($rowd=mysql_fetch_array($result3)) {
           $NEW_manager_password = $rowd["email"];
                                                                        }
 $SQL4 = "Select *  FROM  manager  WHERE  kkpassword ='$_POST[newpassword]'";
-mysql_connect($host,$user,$password);
-$result4= mysql_db_query($databasename,$SQL4);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result4= mysql_query($SQL4);
 while ($rowt=mysql_fetch_array($result4)) {
           $NEW_manager_password = $rowt["email"];
                                                                        }
@@ -56,8 +56,8 @@ else if  ($_POST['newpassword'] != $_POST['repassword'])    {
 else   { 
 
 $SQL5 = "update manager set kkusername = '$_POST[newusername]',kkpassword = '$_POST[newpassword]'"; 
-mysql_connect($host,$user,$password);
-$result5= mysql_db_query($databasename,$SQL5);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result5= mysql_query($SQL5);
 echo "<meta http-equiv=refresh content='0.1;url=manager_edit_login.php?alert=6'>";
 
           }

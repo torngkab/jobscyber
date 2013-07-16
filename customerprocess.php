@@ -34,8 +34,8 @@ $_SESSION[profile_EN] = "";
 $_SESSION[contactname_EN] = "";
 $Xidcompany = "";
 $SQL3 = "Select *  FROM  customerbuffer  WHERE username ='$_POST[ggloginname]' and password ='$_POST[ggpassword]'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL3);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL3);
 while ($row=mysql_fetch_array($result)) {   //  start  while 1
           $_SESSION['idcompanyvalue'] = $row['idcompany'];
 		  $_SESSION['companyname'] = $row['companyname'];
@@ -44,7 +44,7 @@ while ($row=mysql_fetch_array($result)) {   //  start  while 1
                                                                        }  //  end while 1
 $timemax = 0;
 $SQL5 = "Select *  FROM  dateappear  WHERE idcompany ='$Xidcompany'";
-$result5= mysql_db_query($databasename,$SQL5);
+$result5= mysql_query($SQL5);
 while ($rowxx=mysql_fetch_array($result5))            {   //  start  while 2
           if  ($timemax < $rowxx['showdate'])        {
                $timemax = $rowxx['showdate'];
@@ -52,7 +52,7 @@ while ($rowxx=mysql_fetch_array($result5))            {   //  start  while 2
                                                                                         }  //  end  while 2
                                                                                         
 $SQL8 = "Select *  FROM  product  WHERE idproduct ='$Xjobpromotion'";
-$result8= mysql_db_query($databasename,$SQL8);
+$result8= mysql_query($SQL8);
 while ($rowsd=mysql_fetch_array($result8))            {   //  start  while 3
          $_SESSION['promotion'] = $rowsd['totalresume'];
                                                                        }  //  end  while 3

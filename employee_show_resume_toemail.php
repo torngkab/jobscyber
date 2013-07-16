@@ -1,9 +1,9 @@
 <?
 include("Allfunction.inc");
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $SQL = "Select *  FROM  employee_resume_th  WHERE  idresume = '$_GET[idresume]'";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
 $_SESSION['resumeindex']  = $row['idresume'];
 $_SESSION['title'] = $row['title'];

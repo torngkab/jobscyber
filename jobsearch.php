@@ -34,14 +34,14 @@ $month1=date("m");
 $day1=date("d");
 $bmcounter = 0;
 $timetoday = ($year1*10000) + ($month1*100) + $day1; 																	
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $BSQL = "Select *  FROM  customerbuffer order by idcompany";
-$resultB= mysql_db_query($databasename,$BSQL);
+$resultB= mysql_query($BSQL);
 while ($rowb=mysql_fetch_array($resultB))    {    //   start while B
 
            $CSQL = "Select *  FROM  dateappear where idcompany = '$rowb[idcompany]' order by idcompany";
-           $resultC= mysql_db_query($databasename,$CSQL);
+           $resultC= mysql_query($CSQL);
            $maxtime = 0;
            while ($rowc=mysql_fetch_array($resultC))    {    //   start while C
                      if   ($maxtime  < $rowc[showdate])   {
@@ -54,9 +54,9 @@ while ($rowb=mysql_fetch_array($resultB))    {    //   start while B
 
             if   ($timetoday > $maxtime)  {
                  $DSQL = "Delete   FROM  customerbuffer where idcompany = '$rowb[idcompany]'";
-                 $resultD= mysql_db_query($databasename,$DSQL);
+                 $resultD= mysql_query($DSQL);
                  $FSQL = "Delete   FROM  jobother where idcustomer = '$rowb[idcompany]'";
-                 $resultF= mysql_db_query($databasename,$FSQL);
+                 $resultF= mysql_query($FSQL);
 
 
                                                              }                
@@ -65,12 +65,12 @@ while ($rowb=mysql_fetch_array($resultB))    {    //   start while B
 $totalrec = 0;
 // $ASQL = "Select *  FROM  jobother  where jobdepartment = '$_GET[gdepartment]' order by jobother.idcustomer";
 $ASQL = "Select *  FROM  jobother  where jobdepartment = '$_GET[gdepartment]' and (jobname LIKE '$strsearch' or jobname_en LIKE '$strsearch')";   
-$resultA= mysql_db_query($databasename,$ASQL);
+$resultA= mysql_query($ASQL);
 $totalrec = mysql_num_rows($resultA);
 while ($rowkk=mysql_fetch_array($resultA))   {        //   start while 100
 $idcompanyvalue = "";
 $ISQL = "Select *  FROM  customerbuffer  WHERE idcompany ='$rowkk[idcustomer]'";
-$resultI= mysql_db_query($databasename,$ISQL);
+$resultI= mysql_query($ISQL);
 while ($rowbb=mysql_fetch_array($resultI)) {      //   start while 200
 $idcompanyvalue = $rowbb['idcompany'];
                                                             }      //    end while 200
@@ -78,7 +78,7 @@ $idcompanyvalue = $rowbb['idcompany'];
 
 
 $JSQL = "Select *  FROM  dateappear where idcompany = '$idcompanyvalue' order by idcompany,showdate asc";                                                      
-$resultJ= mysql_db_query($databasename,$JSQL);
+$resultJ= mysql_query($JSQL);
 
 $ii = 1;
 while ($rowjj=mysql_fetch_array($resultJ)) { 
@@ -98,7 +98,7 @@ if  ($bufferappeardate != "")  {  //  start if AA
      $DSQL = "update customerbuffer set signuptime = '$bufferappeardate' where idcompany =  '$idcompanyvalue'";
                                        }
 else  {         $DSQL = "update customerbuffer set signuptime = 0 where idcompany =  '$idcompanyvalue'";    }                                     
-$resultD= mysql_db_query($databasename,$DSQL);
+$resultD= mysql_query($DSQL);
                                                           }       //    end while 100  
 if  ($_GET[key] == "T")  {
       $SQL1 = "Select *  FROM  jobother  LEFT JOIN customerbuffer  ON jobother.idcustomer = customerbuffer.idcompany where jobother.jobdepartment = '$_GET[gdepartment]' and jobname LIKE '$strsearch' or jobname_en LIKE '$strsearch' order by signuptime desc, idcompany asc limit $HPG,$perpage";
@@ -106,13 +106,13 @@ if  ($_GET[key] == "T")  {
 else  {
             $SQL1 = "Select *  FROM  jobother  LEFT JOIN customerbuffer  ON jobother.idcustomer = customerbuffer.idcompany where jobother.jobdepartment = '$_GET[gdepartment]' and jobname LIKE '$strsearch' or jobname_en LIKE '$strsearch' order by signuptime desc, idcompany asc limit $HPG,$perpage";
          }
-$result= mysql_db_query($databasename,$SQL1);
+$result= mysql_query($SQL1);
 while ($row=mysql_fetch_array($result))   {        //   start while 1
 if   (($bmcounter % 2) == 0)  {  $Ncolor = "RGB(112,195,46)";   }  else  {   $Ncolor = "#009900";    } 
    
 $idcompanyvalue = "";
 $SQL3 = "Select *  FROM  customerbuffer  WHERE idcompany ='$row[idcustomer]'";
-$result3= mysql_db_query($databasename,$SQL3);
+$result3= mysql_query($SQL3);
 while ($rowx=mysql_fetch_array($result3)) {      //   start while B
 $jobpromotionvalue = $rowx['jobpromotion'];
 $signuptime = $rowx['signuptime'];		

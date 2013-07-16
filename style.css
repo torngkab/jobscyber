@@ -36,7 +36,7 @@ h1 span { background-color:#477b1d; padding:0 10px;}
 #contact_us a { color:#fff; text-transform:uppercase; text-decoration:none; }
 #logo { background:url(images/head_bckg.jpg); background-repeat:no-repeat; background-color:#78ce31;}
 #logo_text { float:right; width:200px; height:80px; background-color:#70c32e; margin:40px 20px 53px 0; font-family: microsoft sans serif, Tahoma, Arial; font-size:13px; color:#fff; padding:10px; }
-#menu { background:#70c32e; height:23px; width:1200px; margin: 0 auto; clear:both; border:1px solid #a8f534; text-align:center;  color:#fff; padding-top:4px; margin-top:2%; margin-left:2.5%;}
+#menu { background:#70c32e; height:23px; width:1120px; margin: 0 auto; clear:both; border:1px solid #a8f534; text-align:center;  color:#fff; padding-top:4px; margin-top:2%; margin-left:2.5%;}
 #menu a { color:#fff; font-size:13px; text-transform:uppercase; font-weight:normal; text-decoration:none; margin:0 20px; margin-top:3px;}
 #menu a:hover{ color:#d4ffa1}
 #submenu { background:#70c32e; height:23px; width:800px; margin: 0 auto; clear:both; border:1px solid #a8f534; text-align:center;  color:#fff; padding-top:4px; margin-left:15%;}

@@ -9,11 +9,11 @@ $_SESSION['codereturn1'] = "F"
 ?>
 <?
 include("Allfunction.inc");
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 
 $SQL8 = "Select *  FROM  employee_resume_th  WHERE  idresume = '$_SESSION[resumeindex]'";
-$result8= mysql_db_query($databasename,$SQL8);
+$result8= mysql_query($SQL8);
 while ($rowx=mysql_fetch_array($result8))          {
 $yyycheckname = $rowx['firstname'];
 $yyychecksurname = $rowx['lastname'];              
@@ -185,7 +185,7 @@ $_SESSION['com3onus8'] = "";
 
 if    ($yyycheckname != "" and $yyychecksurname != "" )   {
 $SQL = "Select *  FROM  employee_resume_th  WHERE  idresume = '$_SESSION[resumeindex]'";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
 $_SESSION['title'] = $row['title']; 
 $_SESSION['firstname'] = $row['firstname'];
@@ -407,13 +407,13 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
     <tr>
       <td><div align="left"><font class=PD3><font color=red>* &nbsp;</font>ชื่อ</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type="text" name="firstname" size=12 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['firstname'])  ?>>
+        <input  type="text" name="firstname" size=12 class="PD3" value=<?echo $_SESSION['firstname'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align="left"><font class=PD3><font color=red>* &nbsp;</font>นามสกุล</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type="text" name="lastname" size=18 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['lastname'])  ?>>
+        <input  type="text" name="lastname" size=18 class="PD3"  value=<?echo $_SESSION['lastname'];?>>
       </div></td>
     </tr>
 <?
@@ -498,13 +498,13 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
     <tr>
       <td><div align="left"><font class=PD3><font color=red>* </font>&nbsp;รหัสบัตรประชาชน</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type="text" name="idcard" size=15  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['passpostid'])  ?>>
+        <input  type="text" name="idcard" size=15  class="PD3" value=<?echo $_SESSION['passpostid'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align="left"><font class=PD3><font color=red>* </font>&nbsp;สัญชาติ</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type="text" name="nationality" size=8  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['nationality'])  ?>>
+        <input  type="text" name="nationality" size=8  class="PD3" value=<?echo $_SESSION['nationality'];?>>
       </div></td>
     </tr>
     <tr>
@@ -555,7 +555,7 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
     <tr>
       <td valign=top><div align="left"><font class=PD3><font color=red>* &nbsp;</font>ที่อยู่ในการติดต่อ</font></div></td>
       <td colspan="10"><div align="left">
-        <input name="address" type="text" class="PD3" size="60"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['address'])  ?>>
+        <input name="address" type="text" class="PD3" size="60"  value=<?echo $_SESSION['address'];?>>
       </div></td>
     </tr>
     <tr>
@@ -718,7 +718,7 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
     <tr>
       <td><div align="left"><font class=PD3> <font color="red">*</font>&nbsp; รหัสไปรษณีย์</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type="text" name="postcode" size=10 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['postcode'])  ?>>
+        <input  type="text" name="postcode" size=10 class="PD3" value=<?echo $_SESSION['postcode'];?>>
       </div></td>
     </tr>
     <tr>
@@ -735,7 +735,7 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
     <tr>
       <td><div align="left"><font class=PD3> &nbsp;<font color="red">*</font>&nbsp; อีเมลส์</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="email" size=32 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['email'])  ?>>
+        <input  type=text name="email" size=32 class="PD3" value=<?echo $_SESSION['email'];?>>
         <font class=PD3> &nbsp; &nbsp; 1 ชื่อเท่านั้น</font></div></td>
     </tr>
     <tr>
@@ -745,25 +745,25 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
     <tr>
       <td><div align="left"><font class=PD3> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ที่บ้าน</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="home" size=16  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['home'])  ?>>
+        <input  type=text name="home" size=16  class="PD3"  value=<?echo $_SESSION['home'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align="left"><font class=PD3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="red">*</font>&nbsp; มือถือ</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="mobile" size=16  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['mobile'])  ?>>
+        <input  type=text name="mobile" size=16  class="PD3"  value=<?echo $_SESSION['mobile'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align="left"><font class=PD3> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ที่ทำงาน</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="office" size=16  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['office'])  ?>>
+        <input  type=text name="office" size=16  class="PD3"  value=<?echo $_SESSION['office'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align="left"><font class=PD3> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; แฟกซ์</font></div></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="fax" size=16  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['fax'])  ?>>
+        <input  type=text name="fax" size=16  class="PD3"  value=<?echo $_SESSION['fax'];?>>
       </div></td>
     </tr>
     <tr>
@@ -826,7 +826,7 @@ $_SESSION['com3onus8'] = $row['com3onus8'];
 <option value=0>
 <?  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx))  { 
            if   ($_SESSION['careerdepartment'] == $rowzz[id])      {   
@@ -836,7 +836,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <?       $i++;                                                           }   ?></div>
       </td>
       <td><div align="left">
-        <input type="text" name="career" size="30"   value=<?=ereg_replace(" ","&nbsp;",$_SESSION['career'])  ?>>
+        <input type="text" name="career" size="30"   value=<?echo $_SESSION['career'];?>>
       </div></td>
 <?
      for ($i=0;$i<=15;$i++)   {
@@ -888,7 +888,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <option value=0>
 <?  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx)) { 
            if   ($_SESSION['intdepartment1'] == $rowzz[id])      {   
@@ -896,8 +896,8 @@ while ($rowzz=mysql_fetch_array($resultx)) {
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$nv[$i];  ?>><?=$rowzz[departmentname];  ?><br>
 <?      $i++;                                                                  }   ?>
       </td>
-              <td><input  type=text name="intposition1" size="24"  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['intposition1'])  ?>></td>
-              <td><input  type=text name="intsalary1" size="5"  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['intsalary1'])  ?>><font class="PD3"><font color=white>&nbsp;<--</font> เงินเดือนที่ต้องการ</font></td>
+              <td><input  type=text name="intposition1" size="24"  class="PD3"  value=<?echo $_SESSION['intposition1'];?>></td>
+              <td><input  type=text name="intsalary1" size="5"  class="PD3"  value=<?echo $_SESSION['intsalary1'];?>><font class="PD3"><font color=white>&nbsp;<--</font> เงินเดือนที่ต้องการ</font></td>
               </tr>
               </table>	 
       </div>	 </td>
@@ -913,7 +913,7 @@ while ($rowzz=mysql_fetch_array($resultx)) {
 <option value=0>
 <?  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx)) { 
            if   ($_SESSION['intdepartment2'] == $rowzz[id])      {   
@@ -921,8 +921,8 @@ while ($rowzz=mysql_fetch_array($resultx)) {
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$nq[$i];  ?>><?=$rowzz[departmentname];  ?><br>
 <?      $i++;                                                          }   ?>
       </td>
-              <td><input  type=text name="intposition2" size="24"  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['intposition2'])  ?>></td>
-              <td><input  type=text name="intsalary2" size="5"  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['intsalary2'])  ?>><font class="PD3"><font color=white>&nbsp;<--</font> เงินเดือนที่ต้องการ</font></td>
+              <td><input  type=text name="intposition2" size="24"  class="PD3"  value=<?echo $_SESSION['intposition2'];?>></td>
+              <td><input  type=text name="intsalary2" size="5"  class="PD3"  value=<?echo $_SESSION['intsalary2'];?>><font class="PD3"><font color=white>&nbsp;<--</font> เงินเดือนที่ต้องการ</font></td>
               </tr>
               </table>
       </div>	 </td>
@@ -938,15 +938,15 @@ while ($rowzz=mysql_fetch_array($resultx)) {
 <option value=0>
 <?  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 while ($rowzz=mysql_fetch_array($resultx)) { 
            if   ($_SESSION['intdepartment3'] == $rowzz[id])      {   
                  $nx[$i] = "selected";	                                                     }	?>
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$nx[$i];  ?>><?=$rowzz[departmentname];  ?><br>
 <?      $i++;                                                          }   ?>
       </td>
-              <td><input  type=text name="intposition3" size="24"  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['intposition3'])  ?>></td>
-              <td><input  type=text name="intsalary3" size="5"  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['intsalary3'])  ?>><font class="PD3"><font color=white>&nbsp;<--</font> เงินเดือนที่ต้องการ</font></td>
+              <td><input  type=text name="intposition3" size="24"  class="PD3"  value=<?echo $_SESSION['intposition3'];?>></td>
+              <td><input  type=text name="intsalary3" size="5"  class="PD3"  value=<?echo $_SESSION['intsalary3'];?>><font class="PD3"><font color=white>&nbsp;<--</font> เงินเดือนที่ต้องการ</font></td>
               </tr>
               </table>
       </div>	 </td>
@@ -961,31 +961,31 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><font class="PD3"><font color="red">*</font> 1</font></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="hobby1" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['hobby1'])  ?>>
+        <input  type=text name="hobby1" size=44  class="PD3"  value=<?echo $_SESSION['hobby1'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><font class="PD3"><font color="red">*</font> 2</font></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="hobby2" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['hobby2'])  ?>>
+        <input  type=text name="hobby2" size=44  class="PD3"  value=<?echo $_SESSION['hobby2'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><font class="PD3">&nbsp; 3</font></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="hobby3" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['hobby3'])  ?>>
+        <input  type=text name="hobby3" size=44  class="PD3"  value=<?echo $_SESSION['hobby3'];?>>
       </div></td>
     </tr>         
     <tr>
       <td><font class="PD3">&nbsp; 4</font></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="hobby4" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['hobby4'])  ?>>
+        <input  type=text name="hobby4" size=44  class="PD3"  value=<?echo $_SESSION['hobby4'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><font class="PD3">&nbsp; 5</font></td>
       <td colspan="10"><div align="left">
-        <input  type=text name="hobby5" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['hobby5'])  ?>>
+        <input  type=text name="hobby5" size=44  class="PD3"  value=<?echo $_SESSION['hobby5'];?>>
       </div></td>
     </tr>         
     <tr>
@@ -1037,25 +1037,25 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3><font color="red">*</font> &nbsp;จาก</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="from1" size=4   class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['from1'])  ?>>
+        <input  type=text name="from1" size=4   class="PD3"  value=<?echo $_SESSION['from1'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> <font color="red">*</font>&nbsp; ถึง</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="to1" size=4   class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['to1'])  ?>>
+        <input  type=text name="to1" size=4   class="PD3"  value=<?echo $_SESSION['to1'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> <font color="red">*</font>&nbsp; ชื่อสถานศึกษา</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="institude1" size=40  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['institude1'])  ?>>
+        <input  type=text name="institude1" size=40  class="PD3"  value=<?echo $_SESSION['institude1'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> <font color="red">*</font>&nbsp; เกรดเฉลี่ย</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="gpa1" size=4  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['gpa1'])  ?>>
+        <input  type=text name="gpa1" size=4  class="PD3"  value=<?echo $_SESSION['gpa1'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1085,19 +1085,19 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> <font color="red">*</font>&nbsp; คณะ</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="faculty1" size=30  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['faculty1'])  ?>>
+        <input  type=text name="faculty1" size=30  class="PD3" value=<?echo $_SESSION['faculty1'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; เอกวิชา</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="major1" size=30  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['major1'])  ?>>
+        <input  type=text name="major1" size=30  class="PD3" value=<?echo $_SESSION['major1'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; โทวิชา</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="minor1" size=30  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['minor1'])  ?>>
+        <input  type=text name="minor1" size=30  class="PD3"  value=<?echo $_SESSION['minor1'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1106,25 +1106,25 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; จาก</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="from2" size=4  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['from2'])  ?>>
+        <input  type=text name="from2" size=4  class="PD3"  value=<?echo $_SESSION['from2'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; ถึง</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=to2 size=4  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['to2'])  ?>>
+        <input  type=text name=to2 size=4  class="PD3"  value=<?echo $_SESSION['to2'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; ชื่อสถานศึกษา</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=institude2 size=40 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['institude2'])  ?>>
+        <input  type=text name=institude2 size=40 class="PD3"  value=<?echo $_SESSION['institude2'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; เกรดเฉลี่ย</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=gpa2 size=4 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['gpa2'])  ?>>
+        <input  type=text name=gpa2 size=4 class="PD3"  value=<?echo $_SESSION['gpa2'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1154,19 +1154,19 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; คณะ</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=faculty2 size=30 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['faculty2'])  ?>>
+        <input  type=text name=faculty2 size=30 class="PD3" value=<?echo $_SESSION['faculty2'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; วิชาเอก</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=major2 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['major2'])  ?>>
+        <input  type=text name=major2 size=30 class="PD3"  value=<?echo $_SESSION['major2'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; โทวิชา </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=minor2 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['minor2'])  ?>>
+        <input  type=text name=minor2 size=30 class="PD3"  value=<?echo $_SESSION['minor2'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1175,25 +1175,25 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; จาก </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=from3 size=4 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['from3'])  ?>>
+        <input  type=text name=from3 size=4 class="PD3"  value=<?echo $_SESSION['from3'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; ถึง </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=to3 size=4 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['to3'])  ?>>
+        <input  type=text name=to3 size=4 class="PD3" value=<?echo $_SESSION['to3'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; ชื่อ</font>สถานศึกษา</div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=institude3 size=40 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['institude3'])  ?>>
+        <input  type=text name=institude3 size=40 class="PD3"  value=<?echo $_SESSION['institude3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; เกรดเฉลี่ย</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=gpa3 size=4 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['gpa3'])  ?>>
+        <input  type=text name=gpa3 size=4 class="PD3" value=<?echo $_SESSION['gpa3'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1223,19 +1223,19 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; คณะ </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=faculty3 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['faculty3'])  ?>>
+        <input  type=text name=faculty3 size=30 class="PD3"  value=<?echo $_SESSION['faculty3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; วิชาเอก </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=major3 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['major3'])  ?>>
+        <input  type=text name=major3 size=30 class="PD3"  value=<?echo $_SESSION['major3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; วิชาโท </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=minor3 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['minor3'])  ?>>
+        <input  type=text name=minor3 size=30 class="PD3"  value=<?echo $_SESSION['minor3'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1244,25 +1244,25 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; จาก</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=from4 size=4 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['from4'])  ?>>
+        <input  type=text name=from4 size=4 class="PD3"  value=<?echo $_SESSION['from4'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; ถึง </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=to4 size=4 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['to4'])  ?>>
+        <input  type=text name=to4 size=4 class="PD3"  value=<?echo $_SESSION['to4'];?>>
         &nbsp;<font class=PD3>(ปี)</font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; ชื่อสถานศึกษา </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=institude4 size=40 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['institude4'])  ?>>
+        <input  type=text name=institude4 size=40 class="PD3"  value=<?echo $_SESSION['institude4'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; เกรดเฉลี่ย</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=gpa4 size=4 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['gpa4'])  ?>>
+        <input  type=text name=gpa4 size=4 class="PD3"  value=<?echo $_SESSION['gpa4'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1292,19 +1292,19 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; คณะ </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=faculty4 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['faculty4'])  ?>>
+        <input  type=text name=faculty4 size=30 class="PD3"  value=<?echo $_SESSION['faculty4'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; วิชาเอก </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=major4 size=30  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['major4'])  ?>>
+        <input  type=text name=major4 size=30  class="PD3"  value=<?echo $_SESSION['major4'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp; วิชาโท </font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name="minor4" size=30  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['minor4'])  ?>>
+        <input  type=text name="minor4" size=30  class="PD3"  value=<?echo $_SESSION['minor4'];?>>
       </div></td>
     </tr>
     <tr>
@@ -1318,32 +1318,32 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 1</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=extracur1 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['extracur1'])  ?>>
+        <input  type=text name=extracur1 size=55  class="PD3"  value=<?echo $_SESSION['extracur1'];?>>
       </div></td>
     </tr>
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 2</font></div></td>
       <td colspan="10">
 	 <div align=left>
-        <input  type=text name=extracur2 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['extracur2'])  ?>>
+        <input  type=text name=extracur2 size=55  class="PD3"  value=<?echo $_SESSION['extracur2'];?>>
       </div>	 </td>
     </tr>
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 3</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=extracur3 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['extracur3'])  ?>>
+        <input  type=text name=extracur3 size=55  class="PD3"  value=<?echo $_SESSION['extracur3'];?>>
       </div></td>
     </tr>            
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 4</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=extracur4 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['extracur4'])  ?>>
+        <input  type=text name=extracur4 size=55  class="PD3"  value=<?echo $_SESSION['extracur4'];?>>
       </div></td>
     </tr> 
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 5</font></div></td>
       <td colspan="10"><div align=left>
-        <input  type=text name=extracur5 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['extracur5'])  ?>>
+        <input  type=text name=extracur5 size=55  class="PD3"  value=<?echo $_SESSION['extracur5'];?>>
       </div></td>
     </tr>         
     <tr>
@@ -1643,9 +1643,9 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     <tr>
       <td><div align=left><font class=PD3><font color="red">*</font>&nbsp; การพิมพ์ดีด</font></div></td>
       <td colspan="10"><div align=left><font class=PD3>ภาษาอังกฤษ &nbsp;
-        <input  type=text name="typingen" size=3  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['typingen'])  ?>>
+        <input  type=text name="typingen" size=3  class="PD3" value=<?echo $_SESSION['typingen'];?>>
         &nbsp; /นาที &nbsp; &nbsp; &nbsp; &nbsp; ภาษาไทย &nbsp;
-        <input  type=text name="typingth" size=3  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['typingth'])  ?>>
+        <input  type=text name="typingth" size=3  class="PD3"  value=<?echo $_SESSION['typingth'];?>>
         / นาที</font></div></td>
     </tr>
     <tr>
@@ -1672,10 +1672,10 @@ while ($rowzz=mysql_fetch_array($resultx)) {
                    <td><div align=center><font class=PD3>&nbsp;&nbsp;4</font></div></td>
              </tr>
               <tr>
-                   <td><input  type="text" name="otherskill1" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill1'])  ?>></td>
-                   <td><input  type="text" name="otherskill2" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill2'])  ?>></td>
-                   <td><input  type="text" name="otherskill3" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill3'])  ?>></td>
-                   <td><input  type="text" name="otherskill4" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill4'])  ?>></td>
+                   <td><input  type="text" name="otherskill1" size="21"  class="PD3" value=<?echo $_SESSION['otherskill1'];?>></td>
+                   <td><input  type="text" name="otherskill2" size="21"  class="PD3" value=<?echo $_SESSION['otherskill2'];?>></td>
+                   <td><input  type="text" name="otherskill3" size="21"  class="PD3" value=<?echo $_SESSION['otherskill3'];?>></td>
+                   <td><input  type="text" name="otherskill4" size="21"  class="PD3" value=<?echo $_SESSION['otherskill4'];?>></td>
              </tr>
               <tr>
                    <td><div align=center><font class=PD3>&nbsp;&nbsp;5</font></div></td>
@@ -1684,10 +1684,10 @@ while ($rowzz=mysql_fetch_array($resultx)) {
                    <td><div align=center><font class=PD3>&nbsp;&nbsp;8</font></div></td>
              </tr>
               <tr>
-                   <td><input  type="text" name="otherskill5" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill5'])  ?>></td>
-                   <td><input  type="text" name="otherskill6" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill6'])  ?>></td>
-                   <td><input  type="text" name="otherskill7" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill7'])  ?>></td>
-                   <td><input  type="text" name="otherskill8" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['otherskill8'])  ?>></td>
+                   <td><input  type="text" name="otherskill5" size="21"  class="PD3" value=<?echo $_SESSION['otherskill5'];?>></td>
+                   <td><input  type="text" name="otherskill6" size="21"  class="PD3" value=<?echo $_SESSION['otherskill6'];?>></td>
+                   <td><input  type="text" name="otherskill7" size="21"  class="PD3" value=<?echo $_SESSION['otherskill7'];?>></td>
+                   <td><input  type="text" name="otherskill8" size="21"  class="PD3" value=<?echo $_SESSION['otherskill8'];?>></td>
              </tr>		   		   		   
              </table>
       </div>	 </td>
@@ -1770,57 +1770,57 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     </tr>
     <tr>
       <td><div align=left><font class=PD3>ชื่อบริษัท</font></div></td>
-      <td  colspan="10"><div align=left><input  type="text" name="company1" size="40" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['company1'])  ?> >
+      <td  colspan="10"><div align=left><input  type="text" name="company1" size="40" class="PD3" value=<?echo $_SESSION['company1'];?> >
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>ตำแหน่ง</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="position1" size="25" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['position1'])  ?> >
+      <td  colspan="10"><div align="left"><input  type="text" name="position1" size="25" class="PD3" value=<?echo $_SESSION['position1'];?> >
       </div></td>
     </tr>
     <tr><?   if  ($_SESSION['showsalary1'] == "T")  {   $NNNG = "checked";  }  else  {   $NNNG = "";   }     ?>
       <td><div align=left><font class=PD3>เงินเดือน</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="salary1" size="8" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['salary1'])  ?>>&nbsp;<input type="checkbox"  name="showsalary1" value="T"  <?=$NNNG;  ?>><font class=PD3>&nbsp;แสดงผลออกทาง resume</font>
+      <td  colspan="10"><div align="left"><input  type="text" name="salary1" size="8" class="PD3" value=<?echo $_SESSION['salary1'];?>>&nbsp;<input type="checkbox"  name="showsalary1" value="T"  <?=$NNNG;  ?>><font class=PD3>&nbsp;แสดงผลออกทาง resume</font>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 1</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus1" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus1'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus1" size="55" class="PD3" value=<?echo $_SESSION['com1onus1'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 2</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus2" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus2'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus2" size="55" class="PD3" value=<?echo $_SESSION['com1onus2'];?>>
       </div></td>
     </tr>    
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 3</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus3" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus3'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus3" size="55" class="PD3" value=<?echo $_SESSION['com1onus3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 4</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus4" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus4'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus4" size="55" class="PD3" value=<?echo $_SESSION['com1onus4'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 5</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus5" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus5'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus5" size="55" class="PD3" value=<?echo $_SESSION['com1onus5'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 6</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus6" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus6'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus6" size="55" class="PD3" value=<?echo $_SESSION['com1onus6'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 7</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus7" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus7'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus7" size="55" class="PD3" value=<?echo $_SESSION['com1onus7'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 8</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com1onus8" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com1onus8'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com1onus8" size="55" class="PD3" value=<?echo $_SESSION['com1onus8'];?>>
       </div></td>
     </tr>            
     <tr>
@@ -1901,57 +1901,57 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     </tr>
     <tr>
       <td><div align=left><font class=PD3>ชื่อบริษัท</font></div></td>
-      <td  colspan="10"><div align=left><input  type="text" name="company2" size="40" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['company2'])  ?>>
+      <td  colspan="10"><div align=left><input  type="text" name="company2" size="40" class="PD3" value=<?echo $_SESSION['company2'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>ตำแหน่ง</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="position2" size="25" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['position2'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="position2" size="25" class="PD3" value=<?echo $_SESSION['position2'];?>>
       </div></td>
     </tr>
     <tr><?   if  ($_SESSION['showsalary2'] == "T")  {   $NNNK = "checked";  }  else  {   $NNNK = "";   }     ?>
       <td><div align=left><font class=PD3>เงินเดือน</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="salary2" size="8" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['salary2'])  ?>>&nbsp;<input type="checkbox"  name="showsalary2" value="T"  <?=$NNNK;  ?>><font class=PD3>&nbsp;แสดงผลออกทาง resume</font>
+      <td  colspan="10"><div align="left"><input  type="text" name="salary2" size="8" class="PD3" value=<?echo $_SESSION['salary2'];?>>&nbsp;<input type="checkbox"  name="showsalary2" value="T"  <?=$NNNK;  ?>><font class=PD3>&nbsp;แสดงผลออกทาง resume</font>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 1</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus1" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus1'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus1" size="55" class="PD3" value=<?echo $_SESSION['com2onus1'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 2</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus2" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus2'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus2" size="55" class="PD3" value=<?echo $_SESSION['com2onus2'];?>>
       </div></td>
     </tr>    
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 3</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus3" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus3'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus3" size="55" class="PD3" value=<?echo $_SESSION['com2onus3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 4</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus4" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus4'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus4" size="55" class="PD3" value=<?echo $_SESSION['com2onus4'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 5</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus5" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus5'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus5" size="55" class="PD3" value=<?echo $_SESSION['com2onus5'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 6</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus6" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus6'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus6" size="55" class="PD3" value=<?echo $_SESSION['com2onus6'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 7</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus7" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus7'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus7" size="55" class="PD3" value=<?echo $_SESSION['com2onus7'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 8</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com2onus8" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com2onus8'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com2onus8" size="55" class="PD3" value=<?echo $_SESSION['com2onus8'];?>>
       </div></td>
     </tr>
     <tr>
@@ -2032,57 +2032,57 @@ while ($rowzz=mysql_fetch_array($resultx)) {
     </tr>
     <tr>
       <td><div align=left><font class=PD3>ชื่อบริษัท</font></div></td>
-      <td  colspan="10"><div align=left><input  type="text" name="company3" size="40" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['company3'])  ?>>
+      <td  colspan="10"><div align=left><input  type="text" name="company3" size="40" class="PD3" value=<?echo $_SESSION['company3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>ตำแหน่ง</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="position3" size="25" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['position3'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="position3" size="25" class="PD3" value=<?echo $_SESSION['position3'];?>>
       </div></td>
     </tr>
     <tr><?   if  ($_SESSION['showsalary3'] == "T")  {   $NNND = "checked";  }  else  {   $NNND = "";   }     ?>
       <td><div align=left><font class=PD3>เงินเดือน</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="salary3" size="8" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['salary3'])  ?>>&nbsp;<input type="checkbox"  name="showsalary3" value="T"  <?=$NNND;  ?>><font class=PD3>&nbsp;แสดงผลออกทาง resume</font>
+      <td  colspan="10"><div align="left"><input  type="text" name="salary3" size="8" class="PD3" value=<?echo $_SESSION['salary3'];?>>&nbsp;<input type="checkbox"  name="showsalary3" value="T"  <?=$NNND;  ?>><font class=PD3>&nbsp;แสดงผลออกทาง resume</font>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 1</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus1" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus1'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus1" size="55" class="PD3" value=<?echo $_SESSION['com3onus1'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 2</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus2" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus2'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus2" size="55" class="PD3" value=<?echo $_SESSION['com3onus2'];?>>
       </div></td>
     </tr>    
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 3</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus3" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus3'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus3" size="55" class="PD3" value=<?echo $_SESSION['com3onus3'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 4</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus4" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus4'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus4" size="55" class="PD3" value=<?echo $_SESSION['com3onus4'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 5</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus5" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus5'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus5" size="55" class="PD3" value=<?echo $_SESSION['com3onus5'];?>>
       </div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 6</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus6" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus6'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus6" size="55" class="PD3" value=<?echo $_SESSION['com3onus6'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 7</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus7" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus7'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus7" size="55" class="PD3" value=<?echo $_SESSION['com3onus7'];?>>
       </div></td>
     </tr> 
     <tr>
       <td><div align=left><font class=PD3>หน้าที่ 8</font></div></td>
-      <td  colspan="10"><div align="left"><input  type="text" name="com3onus8" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['com3onus8'])  ?>>
+      <td  colspan="10"><div align="left"><input  type="text" name="com3onus8" size="55" class="PD3" value=<?echo $_SESSION['com3onus8'];?>>
       </div></td>
     </tr>                         
     <tr>

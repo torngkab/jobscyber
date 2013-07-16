@@ -8,15 +8,15 @@ $GMM_manager_oldpassword1 = "Nodata";
 $GMM_manager_oldpassword2 = "Nodata";
 $KKKid = 1;
 $SQL = "Select *  FROM  manager  WHERE  kkusername ='$oldusername'"; 
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
           $GMM_manager_oldusername = $row[kkusername];
                                                                 }
 												    
 $SQL1 = "Select *  FROM  manager  WHERE  kkpassword ='$oldpassword1'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$SQL1);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result= mysql_query($SQL1);
 while ($row=mysql_fetch_array($result)) {
           $GMM_manager_oldpassword1 = $row[kkusername];
                                                                 }
@@ -48,8 +48,8 @@ elseif  ($newpassword == "")    {
 else   {
 
 $SQL2 = "update manager  set kkusername = '$newusername',kkpassword = '$newpassword' where id='$KKKid'"; 
-mysql_connect($host,$user,$password);
-$result2= mysql_db_query($databasename,$SQL2);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result2= mysql_query($SQL2);
 $_SESSION['Pvaluemenu'] = 0;
 echo "<script>alert('เปลี่ยน username และ Password ใหม่แล้ว'); </script>";
           }

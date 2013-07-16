@@ -14,9 +14,9 @@ BODY,DIV,TABLE,THEAD,TBODY,TFOOT,TR,TH,TD,P { font-family:"Tahoma"; font-size:x-
 include("Allfunction.inc");
 
 $SQL2 = "select *  from  customer where idcompany = '$_GET[idcompanylist]'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result2= mysql_db_query($databasename,$SQL2);
+$result2= mysql_query($SQL2);
 while ($row=mysql_fetch_array($result2)) {  
              $namecompany = $row['companyname'];
              $addresslist = $row['address'];

@@ -27,9 +27,9 @@
 	$sql1 .= "'$proc_pos',";
 	$sql1 .= "'$proc_resume',";
 	$sql1 .= "'$tmp')";
-	$conn = mysql_connect($host,$user,$password);
+	$conn = mysql_connect($host,$user,$password);mysql_select_db($databasename);
 	$set_conn = mysql_query("SET NAMES TIS620");
-	$result = mysql_db_query($databasename,$sql1);
+	$result = mysql_query($sql1);
 	if($result)
 		echo "Save Done.";
 	else

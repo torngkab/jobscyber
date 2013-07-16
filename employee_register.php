@@ -1,7 +1,7 @@
 <?session_start();?>
 <?
 include ("Allfunction.inc");
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $year1=strval(date("Y"));
 $month1=strval(date("m"));
@@ -18,8 +18,8 @@ $ISQL = "insert into customer_check_see_resume values('$buffertoday','$times','$
 			$_SESSION['alert'] = 3;
 			echo "<meta http-equiv=refresh content='0.1;url=jobshowpage.php?alert=1&lang=$_GET[lang]&jjcustomer=$_GET[jjcustomer]&jjobnumber=$_GET[jjobnumber]&atpage=$_GET[atpage]'>";
 		}else{
-          $resultA= mysql_db_query($databasename,$DSQL);
-		  $resultB= mysql_db_query($databasename,$ISQL);
+          $resultA= mysql_query($DSQL);
+		  $resultB= mysql_query($ISQL);
           $_SESSION['alert'] = 1;
           echo "<meta http-equiv=refresh content='0.1;url=jobshowpage.php?alert=1&lang=$_GET[lang]&jjcustomer=$_GET[jjcustomer]&jjobnumber=$_GET[jjobnumber]&atpage=$_GET[atpage]'>";
         }

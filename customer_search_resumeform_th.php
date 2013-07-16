@@ -1,11 +1,11 @@
 <?
 session_start();
 include("Allfunction.inc");
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $_SESSION[g_resumeindex] = $_GET[resumeindex];
 $SQL = "Select *  FROM  employee_resume_th  WHERE  idresume = '$_GET[resumeindex]'";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
 $_SESSION['title'] = $row['title'];
 $_SESSION['image'] = $row['imageemployee'];
@@ -171,10 +171,10 @@ $_SESSION['age'] = (date("Y")+543)-$_SESSION['birthyear'];
 ?>
 <?$_SESSION['read'] = $_GET['read'];?>
 <?
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $SQL = "Select *  FROM  emp_img  WHERE  idresume = '$_SESSION[resumeindex]'";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
 $_SESSION['image'] = $row['data'];
 }
@@ -691,10 +691,10 @@ $m = date('m');
 $y = date('Y')+543;
 $now = $y.$m.$d;
 $times = date('H:i:s');
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $SQL = "insert into customer_check_see_status values('$_GET[resumeindex]','$_GET[idcompany]','$now','$_GET[read]','$times')";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 }
 ?>
 </BODY>

@@ -5,9 +5,9 @@ $XXlanguage = $_GET['lang'];
 $XXcustomer = $_GET['jjcustomer'];
 $XXjobnumber = $_GET['jjobnumber'];
 $SQL = "Select *  FROM  jobother  WHERE  jobnumber ='$XXjobnumber' and idcustomer = '$XXcustomer'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {   //    start while
 $Xjobname = $row['jobname'];
 $Xqualification = $row['qualification'];
@@ -31,9 +31,9 @@ $Xcontact_en = $row['contact_en'];
 
 
 $SQL1 = "Select *  FROM  customerbuffer  WHERE  idcompany ='$XXcustomer'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL1);
+$result= mysql_query($SQL1);
 while ($row=mysql_fetch_array($result)) {     //   start while
 $Xcompanyname_th = $row[companyname];
 $Xaddress = $row[address];
@@ -103,9 +103,9 @@ $Xsignuptime = $row[signuptime];
 
 <?
 $SQL = "Select *  FROM  jobother  WHERE idcustomer = '$XXcustomer'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($rowz=mysql_fetch_array($result))                  {   //    start while
 if     ($XXjobnumber != $rowz['jobnumber'])    {   //   start  if
         echo  "<a href=customerpreview.php?jjcustomer=$XXcustomer&jjobnumber=$rowz[jobnumber]&lang=th>"."<font class=PD3>".$rowz['jobname']."</font>"."</a>"."<br>";
@@ -151,9 +151,9 @@ else                  {          ?>
 
 <?
 $SQL = "Select *  FROM  jobother  WHERE idcustomer = '$XXcustomer'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($rowz=mysql_fetch_array($result))                  {   //    start while
 if     ($XXjobnumber != $rowz['jobnumber'])    {   //   start  if
         echo  "<a href=customerpreview.php?jjcustomer=$XXcustomer&jjobnumber=$rowz[jobnumber]&lang=en>"."<font class=PD3>".$rowz['jobname_en']."</font>"."</a>"."<br>";

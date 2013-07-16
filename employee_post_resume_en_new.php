@@ -78,9 +78,9 @@ if    ($_SESSION['codereturn2'] == "T")   {
                                                                            } 
 $_SESSION['codereturn2'] = "F";
 $SQL = "Select *  FROM  employee_resume_th  WHERE  idresume ='$_SESSION[resumeindex]'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
           $_SESSION[dbtitle] = $row[title];
           $_SESSION[dbgender] = $row[gender];
@@ -230,16 +230,16 @@ while ($row=mysql_fetch_array($result)) {
                                                                   }
 
 $SQL5 = "Select *  FROM  employee_resume_en  WHERE  idresume ='$_SESSION[resumeindex]'";
-$result1= mysql_db_query($databasename,$SQL5);
+$result1= mysql_query($SQL5);
 while ($qrow=mysql_fetch_array($result1)) {
           $mmmfirstname = $qrow['firstname'];
                                                           }
 
 if    ($mmmfirstname != "")   {
-       mysql_connect($host,$user,$password);
+       mysql_connect($host,$user,$password);mysql_select_db($databasename);
        mysql_query("SET NAMES TIS620");
        $SQL1 = "Select *  FROM  employee_resume_en  WHERE  idresume ='$_SESSION[resumeindex]'";
-       $result01= mysql_db_query($databasename,$SQL1);
+       $result01= mysql_query($SQL1);
        while ($xrow=mysql_fetch_array($result01)) {
           $_SESSION[kgfirstname] = $xrow['firstname'];
           $_SESSION[kglastname] = $xrow['lastname'];            
@@ -348,13 +348,13 @@ $dayday = substr($bufferday,6,2);
     <tr>
       <td><div align="left"><span class="PD2">*</span><font class=PD10 style1> &nbsp;</font><span class="PD3">First Name</span></div></td>
       <td colspan="5"><div align="left">
-        <input  type="text" name="firstname" size=12 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[kgfirstname])  ?>>
+        <input  type="text" name="firstname" size=12 class="PD3" value=<?echo $_SESSION[kgfirstname]; ?>>
       </div></td>
     </tr>
     <tr>
       <td><div align="left"><font class=PD3><font color=red>* &nbsp;</font>Last Name</font></div></td>
       <td colspan="5"><div align="left">
-        <input  type="text" name="lastname" size=18 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION[kglastname])  ?>>
+        <input  type="text" name="lastname" size=18 class="PD3"  value=<?echo $_SESSION[kglastname]; ?>>
       </div></td>
     </tr>
     <tr>
@@ -395,7 +395,7 @@ $dayday = substr($bufferday,6,2);
     <tr>
       <td><div align="left"><font class=PD3><font color=red>* </font>&nbsp;Nationality</font></div></td>
       <td colspan="5"><div align="left">
-        <input  type="text" name="nationality" size=20  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgnationality'])  ?>>
+        <input  type="text" name="nationality" size=20  class="PD3" value=<?echo $_SESSION['kgnationality']; ?>>
       </div></td>
     </tr>
     <tr>
@@ -416,7 +416,7 @@ $dayday = substr($bufferday,6,2);
     <tr>
       <td valign=top><div align="left"><font class=PD3><font color=red>* &nbsp;</font>Contact Address</font></div></td>
       <td colspan="5"><div align="left">
-        <input name="address" type="text" class="PD3" size="60"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgaddress'])  ?>>
+        <input name="address" type="text" class="PD3" size="60"  value=<?echo $_SESSION['kgaddress']; ?>>
       </div></td>
     </tr>
     <tr>
@@ -528,7 +528,7 @@ $dayday = substr($bufferday,6,2);
 <option value=0>
 <?  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx))  { 
            if   ($_SESSION['careerdepartment'] == $rowzz[id])      {   
@@ -537,7 +537,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$ng[$i];  ?>><?=$rowzz[departmentname_en];  ?><br>
 <?       $i++;                                                           }   ?>
 </select>      
-        <input type="text" name="career_en" size="30"   value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcareer'])  ?>>
+        <input type="text" name="career_en" size="30"   value=<?echo $_SESSION['kgcareer']; ?>>
       </div>
 <?
      for ($i=0;$i<=15;$i++)   {
@@ -586,7 +586,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <?
 $_SESSION[gd_intposition1] = "";  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx))  { 
            if   ($_SESSION['intdepartment1'] == $rowzz[id])      {   
@@ -595,9 +595,9 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$wqq[$i];  ?>><?=$rowzz[departmentname_en];  ?><br>
 <?       $i++;                                                           }   ?>
 </select>      
-        <input type="text" name="intposition1" size="30"   value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgintposition1'])  ?>>
+        <input type="text" name="intposition1" size="30"   value=<?echo $_SESSION['kgintposition1']; ?>>
       </div></td><td><div align="left">
-<font class="PD10">&nbsp; &nbsp; <?=ereg_replace(" ","&nbsp;",$_SESSION['db_intsalary1'])  ?>&nbsp; bath</font></div></td>
+<font class="PD10">&nbsp; &nbsp; <?echo $_SESSION['db_intsalary1']; ?>&nbsp; bath</font></div></td>
 </tr>
 
     <?   if   ($_SESSION[intposition2] != "")     {     ?>
@@ -609,7 +609,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <?
 $_SESSION[gd_intposition2] = "";  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx))  { 
            if   ($_SESSION['intdepartment2'] == $rowzz[id])      {   
@@ -618,9 +618,9 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$nxx[$i];  ?>><?=$rowzz[departmentname_en];  ?><br>
 <?       $i++;                                                           }   ?>
 </select>      
-        <input type="text" name="intposition2" size="30"   value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgintposition2'])  ?>>
+        <input type="text" name="intposition2" size="30"   value=<?echo $_SESSION['kgintposition2']; ?>>
       </div></td><td><div align="left">
-<font class="PD10">&nbsp; &nbsp; <?=ereg_replace(" ","&nbsp;",$_SESSION['db_intsalary2'])  ?>&nbsp; bath</font></div></td>
+<font class="PD10">&nbsp; &nbsp; <?echo $_SESSION['db_intsalary2']; ?>&nbsp; bath</font></div></td>
 </tr>
     <?                                                                    }     ?>
     <?   if   ($_SESSION[intposition3] != "")     {     ?>    
@@ -632,7 +632,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <?
 $_SESSION[gd_intposition3] = "";  
 $XSQL = "Select *  FROM  department order by id asc";
-$resultx = mysql_db_query($databasename,$XSQL);
+$resultx = mysql_query($XSQL);
 $i = 0;
 while ($rowzz=mysql_fetch_array($resultx))  { 
            if   ($_SESSION['intdepartment3'] == $rowzz[id])      {   
@@ -641,9 +641,9 @@ while ($rowzz=mysql_fetch_array($resultx))  {
 <option value=<?=$rowzz[id];  ?> &nbsp; <?=$pxx[$i];  ?>><?=$rowzz[departmentname_en];  ?><br>
 <?       $i++;                                                           }   ?>
 </select>      
-        <input type="text" name="intposition3" size="30"   value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgintposition3'])  ?>>
+        <input type="text" name="intposition3" size="30"   value=<?echo $_SESSION['kgintposition3']; ?>>
       </div></td>
-              <td><div align="left"><font class="PD10">&nbsp; &nbsp; <?=ereg_replace(" ","&nbsp;",$_SESSION['db_intsalary3'])  ?>&nbsp; bath</font></div></td>
+              <td><div align="left"><font class="PD10">&nbsp; &nbsp; <?echo $_SESSION['db_intsalary3']; ?>&nbsp; bath</font></div></td>
               </tr>
     <?                                                                    }     ?>    
     <tr>
@@ -656,20 +656,20 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><font class="PD3"><font color="red">*</font> 1</font></td>
       <td colspan="5"><div align="left">
-        <input  type=text name="hobby1" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kghobby1'])  ?>>
+        <input  type=text name="hobby1" size=44  class="PD3"  value=<?echo $_SESSION['kghobby1']; ?>>
       </div></td>
     </tr> 
     <tr>
       <td><font class="PD3"><font color="red">*</font> 2</font></td>
       <td colspan="5"><div align="left">
-        <input  type=text name="hobby2" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kghobby2'])  ?>>
+        <input  type=text name="hobby2" size=44  class="PD3"  value=<?echo $_SESSION['kghobby2']; ?>>
       </div></td>
     </tr> 
     <?   if   ($_SESSION[hobby3] != "")     {     ?>    
     <tr>
       <td><font class="PD3"><font color="#78CE41">*</font> 3</font></td>
       <td colspan="5"><div align="left">
-        <input  type=text name="hobby3" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kghobby3'])  ?>>
+        <input  type=text name="hobby3" size=44  class="PD3"  value=<?echo $_SESSION['kghobby3']; ?>>
       </div></td>
     </tr>
     <?                                                             }     ?>
@@ -677,7 +677,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><font class="PD3"><font color="#78CE41">*</font> 4</font></td>
       <td colspan="5"><div align="left">
-        <input  type=text name="hobby4" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kghobby4'])  ?>>
+        <input  type=text name="hobby4" size=44  class="PD3"  value=<?echo $_SESSION['kghobby4']; ?>>
       </div></td>
     </tr> 
     <?                                                             }     ?>    
@@ -685,7 +685,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><font class="PD3"><font color="#78CE41">*</font> 5</font></td>
       <td colspan="5"><div align="left">
-        <input  type=text name="hobby5" size=44  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kghobby5'])  ?>>
+        <input  type=text name="hobby5" size=44  class="PD3"  value=<?echo $_SESSION['kghobby5']; ?>>
       </div></td>
     </tr>
     <?                                                              }     ?>             
@@ -735,7 +735,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     </tr>
     <tr>
       <td><div align=left><font class=PD3> <font color="red">*</font>&nbsp; Institution Name</font></div></td>
-      <td colspan="5"><div align=left><input  type=text name="institude1" size=40  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[kgintitude1])  ?>></font></div></td>
+      <td colspan="5"><div align=left><input  type=text name="institude1" size=40  class="PD3" value=<?echo $_SESSION[kgintitude1]; ?>></font></div></td>
     </tr>
     <tr>
       <td><div align=left><font class=PD3> <font color="red">* </font>&nbsp;GPA</font></div></td>
@@ -749,14 +749,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> <font color="red">*</font> &nbsp;Faculty</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name="faculty1" size=30  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgfaculty1'])  ?>>
+        <input  type=text name="faculty1" size=30  class="PD3" value=<?echo $_SESSION['kgfaculty1']; ?>>
       </div></td>
     </tr>
     <?   if  ($_SESSION[dbedt1_major] != "")     {   ?>
     <tr>
       <td><div align=left><font class=PD3>  &nbsp;&nbsp;  &nbsp;Major</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name="major1" size=30  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgmajor1'])  ?>>
+        <input  type=text name="major1" size=30  class="PD3" value=<?echo $_SESSION['kgmajor1']; ?>>
       </div></td>
     </tr>
     <?                                                                 }   ?> 
@@ -764,7 +764,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Minor</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name="minor1" size=30  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgminor1'])  ?>>
+        <input  type=text name="minor1" size=30  class="PD3"  value=<?echo $_SESSION['kgminor1']; ?>>
       </div></td>
     </tr>
     <?                                                                 }   ?>    
@@ -783,7 +783,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp; Institution Name</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name="institude2"  size=40 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgintitude2'])  ?>>
+        <input  type=text name="institude2"  size=40 class="PD3"  value=<?echo $_SESSION['kgintitude2']; ?>>
       </div></td>
     </tr>
     <tr>
@@ -797,14 +797,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp; &nbsp;&nbsp;Faculty</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=faculty2 size=30 class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgfaculty2'])  ?>>
+        <input  type=text name=faculty2 size=30 class="PD3" value=<?echo $_SESSION['kgfaculty2']; ?>>
       </div></td>
     </tr>
     <?   if  ($_SESSION[dbedt2_major] != "")     {   ?>
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Major</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=major2 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgmajor2'])  ?>>
+        <input  type=text name=major2 size=30 class="PD3"  value=<?echo $_SESSION['kgmajor2']; ?>>
       </div></td>
     </tr>
     <?                                                                 }   ?>    
@@ -812,7 +812,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Minor</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=minor2 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgminor2'])  ?>>
+        <input  type=text name=minor2 size=30 class="PD3"  value=<?echo $_SESSION['kgminor2']; ?>>
       </div></td>
     </tr>
     <?                                                                 }   ?>    
@@ -832,7 +832,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Institution Name</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=institude3 size=40 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgintitude3'])  ?>>
+        <input  type=text name=institude3 size=40 class="PD3"  value=<?echo $_SESSION['kgintitude3']; ?>>
       </div></td>
     </tr>
     <tr>
@@ -846,14 +846,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Faculty</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=faculty3 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgfaculty3'])  ?>>
+        <input  type=text name=faculty3 size=30 class="PD3"  value=<?echo $_SESSION['kgfaculty3']; ?>>
       </div></td>
     </tr>
     <?   if  ($_SESSION[dbedt3_major] != "")     {   ?>
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Major</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=major3 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgmajor3'])  ?>>
+        <input  type=text name=major3 size=30 class="PD3"  value=<?echo $_SESSION['kgmajor3']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    
@@ -861,7 +861,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Minor</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=minor3 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgminor3'])  ?>>
+        <input  type=text name=minor3 size=30 class="PD3"  value=<?echo $_SESSION['kgminor3']; ?>>
       </div></td>
     </tr>
     <?                                                                 }  ?>    
@@ -877,7 +877,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Institution Name</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=institude4 size=40 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgintitude4'])  ?>>
+        <input  type=text name=institude4 size=40 class="PD3"  value=<?echo $_SESSION['kgintitude4']; ?>>
       </div></td>
     </tr>
     <tr>
@@ -891,14 +891,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Faculty</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=faculty4 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgfaculty4'])  ?>>
+        <input  type=text name=faculty4 size=30 class="PD3"  value=<?echo $_SESSION['kgfaculty4']; ?>>
       </div></td>
     </tr>
     <?   if  ($_SESSION[dbedt4_major] != "")     {   ?>
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Major</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=major4 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgmajor4'])  ?>>
+        <input  type=text name=major4 size=30 class="PD3"  value=<?echo $_SESSION['kgmajor4']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    
@@ -906,7 +906,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td><div align=left><font class=PD3> &nbsp;&nbsp; &nbsp;Minor</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=minor4 size=30 class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgminor4'])  ?>>
+        <input  type=text name=minor4 size=30 class="PD3"  value=<?echo $_SESSION['kgminor4']; ?>>
       </div></td>
     </tr>
     <?                                                                 }  ?>    
@@ -924,7 +924,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 1</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=extracur1 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgextracur1'])  ?>>
+        <input  type=text name=extracur1 size=55  class="PD3"  value=<?echo $_SESSION['kgextracur1']; ?>>
       </div></td>
     </tr>
     <?                                                       }   ?>    
@@ -933,7 +933,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
       <td valign=top><div align=center><font class=PD3>&nbsp; 2</font></div></td>
       <td colspan="5">
 	 <div align=left>
-        <input  type=text name=extracur2 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgextracur2'])  ?>>
+        <input  type=text name=extracur2 size=55  class="PD3"  value=<?echo $_SESSION['kgextracur2']; ?>>
       </div>	 </td>
     </tr>
     <?                                                       }   ?>    
@@ -941,7 +941,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 3</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=extracur3 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgextracur3'])  ?>>
+        <input  type=text name=extracur3 size=55  class="PD3"  value=<?echo $_SESSION['kgextracur3']; ?>>
       </div></td>
     </tr>
     <?                                                       }   ?>    
@@ -949,7 +949,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 4</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=extracur4 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgextracur4'])  ?>>
+        <input  type=text name=extracur4 size=55  class="PD3"  value=<?echo $_SESSION['kgextracur4']; ?>>
       </div></td>
     </tr>
     <?                                                       }   ?>
@@ -957,7 +957,7 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <tr>
       <td valign=top><div align=center><font class=PD3>&nbsp; 5</font></div></td>
       <td colspan="5"><div align=left>
-        <input  type=text name=extracur5 size=55  class="PD3"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgextracur5'])  ?>>
+        <input  type=text name=extracur5 size=55  class="PD3"  value=<?echo $_SESSION['kgextracur5']; ?>>
       </div></td>
     </tr>
     <?                                                       }   ?>             
@@ -1059,13 +1059,13 @@ while ($rowzz=mysql_fetch_array($resultx))  {
                    <?                                                                }    ?>			    
              </tr>
               <tr>
-                   <td><input  type="text" name="otherskill1" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill1'])  ?>></td>
-                   <td><input  type="text" name="otherskill2" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill2'])  ?>></td>
+                   <td><input  type="text" name="otherskill1" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill1']; ?>></td>
+                   <td><input  type="text" name="otherskill2" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill2']; ?>></td>
                    <?   if  ($_SESSION[gd_otherskill3] != "")    {    ?>
-                   <td><input  type="text" name="otherskill3" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill3'])  ?>></td>
+                   <td><input  type="text" name="otherskill3" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill3']; ?>></td>
                    <?                                                                }    ?>			    
                    <?   if  ($_SESSION[gd_otherskill4] != "")    {     ?>
-                   <td><input  type="text" name="otherskill4" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill4'])  ?>></td>
+                   <td><input  type="text" name="otherskill4" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill4']; ?>></td>
                    <?                                                                }    ?>            
              </tr>
               <tr>
@@ -1084,16 +1084,16 @@ while ($rowzz=mysql_fetch_array($resultx))  {
              </tr>
               <tr>
                    <?   if  ($_SESSION[gd_otherskill5] != "")    {    ?>
-                   <td><input  type="text" name="otherskill5" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill5'])  ?>></td>
+                   <td><input  type="text" name="otherskill5" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill5']; ?>></td>
                    <?                                                                }    ?>			    
                    <?   if  ($_SESSION[gd_otherskill6] != "")    {    ?>
-                   <td><input  type="text" name="otherskill6" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill6'])  ?>></td>
+                   <td><input  type="text" name="otherskill6" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill6']; ?>></td>
                    <?                                                                }   ?>
                    <?   if  ($_SESSION[gd_otherskill7] != "")    {    ?>
-                   <td><input  type="text" name="otherskill7" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill7'])  ?>></td>
+                   <td><input  type="text" name="otherskill7" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill7']; ?>></td>
                    <?                                                                }   ?>
                    <?   if  ($_SESSION[gd_otherskill8] != "")    {    ?>
-                   <td><input  type="text" name="otherskill8" size="21"  class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgotherskill8'])  ?>></td>
+                   <td><input  type="text" name="otherskill8" size="21"  class="PD3" value=<?echo $_SESSION['kgotherskill8']; ?>></td>
                    <?                                                                }   ?>			    
              </tr>		   		   		   
              </table>
@@ -1116,14 +1116,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <?  if   ($_SESSION[dbcompany1] != "")    {   ?>    
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company</font></div></td>
-      <td  colspan="5"><div align=left><input  type="text" name="company1" size="40" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcompany1'])  ?>>
+      <td  colspan="5"><div align=left><input  type="text" name="company1" size="40" class="PD3" value=<?echo $_SESSION['kgcompany1']; ?>>
       </div></td>
     </tr>
     <?                                                                     }   ?> 
     <?  if   ($_SESSION[dbposition1] != "")    {   ?>
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="position1" size="25" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgposition1'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="position1" size="25" class="PD3" value=<?echo $_SESSION['kgposition1']; ?>>
       </div></td>
     </tr>
     <?                                                                   }   ?>
@@ -1137,56 +1137,56 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <?  if   ($_SESSION[dbcom1onus1] != "")    {   ?>    
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 1</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus1" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus1'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus1" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus1']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?> 
     <?  if   ($_SESSION[dbcom1onus2] != "")    {   ?>        
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 2</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus2" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus2'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus2" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus2']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom1onus3] != "")    {   ?>             
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 3</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus3" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus3'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus3" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus3']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom1onus4] != "")    {   ?>         
     <tr>
      <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 4</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus4" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus4'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus4" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus4']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom1onus5] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 5</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus5" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus5'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus5" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus5']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom1onus6] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 6</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus6" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus6'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus6" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus6']; ?>>
       </div></td>
     </tr> 
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom1onus7] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 7</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus7" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus7'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus7" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus7']; ?>>
       </div></td>
     </tr> 
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom1onus8] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 8</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com1onus8" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom1onus8'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com1onus8" size="55" class="PD3" value=<?echo $_SESSION['kgcom1onus8']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>     
@@ -1209,14 +1209,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <?  if   ($_SESSION[dbcompany2] != "")    {   ?>    
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company</font></div></td>
-      <td  colspan="5"><div align=left><input  type="text" name="company2" size="40" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcompany2'])  ?>>
+      <td  colspan="5"><div align=left><input  type="text" name="company2" size="40" class="PD3" value=<?echo $_SESSION['kgcompany2']; ?>>
       </div></td>
     </tr>
     <?                                                                     }   ?> 
     <?  if   ($_SESSION[dbposition2] != "")    {   ?>
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="position2" size="25" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgposition2'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="position2" size="25" class="PD3" value=<?echo $_SESSION['kgposition2']; ?>>
       </div></td>
     </tr>
     <?                                                                   }   ?>
@@ -1230,56 +1230,56 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <?  if   ($_SESSION[dbcom2onus1] != "")    {   ?>    
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 1</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus1" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus1'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus1" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus1']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?> 
     <?  if   ($_SESSION[dbcom2onus2] != "")    {   ?>        
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 2</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus2" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus2'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus2" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus2']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom2onus3] != "")    {   ?>             
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 3</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus3" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus3'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus3" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus3']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom2onus4] != "")    {   ?>         
     <tr>
      <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 4</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus4" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus4'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus4" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus4']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom2onus5] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 5</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus5" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus5'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus5" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus5']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom2onus6] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 6</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus6" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus6'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus6" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus6']; ?>>
       </div></td>
     </tr> 
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom2onus7] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 7</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus7" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus7'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus7" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus7']; ?>>
       </div></td>
     </tr> 
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbcom2onus8] != "")    {   ?>         
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 8</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com2onus8" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom2onus8'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com2onus8" size="55" class="PD3" value=<?echo $_SESSION['kgcom2onus8']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
@@ -1302,14 +1302,14 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <?  if   ($_SESSION[dbcompany3] != "")    {   ?>    
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company</font></div></td>
-      <td  colspan="5"><div align=left><input  type="text" name="company3" size="40" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcompany3'])  ?>>
+      <td  colspan="5"><div align=left><input  type="text" name="company3" size="40" class="PD3" value=<?echo $_SESSION['kgcompany3']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
     <?  if   ($_SESSION[dbposition3] != "")    {   ?>
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="position3" size="25" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgposition3'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="position3" size="25" class="PD3" value=<?echo $_SESSION['kgposition3']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>
@@ -1320,56 +1320,56 @@ while ($rowzz=mysql_fetch_array($resultx))  {
     <?  if   ($_SESSION[dbcom3onus1] != "")    {   ?>     
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 1</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus1" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus1'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus1" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus1']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    
     <?  if   ($_SESSION[dbcom3onus2] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 2</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus2" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus2'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus2" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus2']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>        
     <?  if   ($_SESSION[dbcom3onus3] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 3</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus3" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus3'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus3" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus3']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    
     <?  if   ($_SESSION[dbcom3onus4] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 4</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus4" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus4'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus4" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus4']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    
     <?  if   ($_SESSION[dbcom3onus5] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 5</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus5" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus5'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus5" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus5']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    
     <?  if   ($_SESSION[dbcom3onus6] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 6</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus6" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus6'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus6" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus6']; ?>>
       </div></td>
     </tr> 
     <?                                                                }   ?>    
     <?  if   ($_SESSION[dbcom3onus7] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 7</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus7" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus7'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus7" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus7']; ?>>
       </div></td>
     </tr> 
     <?                                                                }   ?>    
     <?  if   ($_SESSION[dbcom3onus8] != "")    {   ?> 
     <tr>
       <td><div align=left><font class=PD3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Job description 8</font></div></td>
-      <td  colspan="5"><div align="left"><input  type="text" name="com3onus8" size="55" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION['kgcom3onus8'])  ?>>
+      <td  colspan="5"><div align="left"><input  type="text" name="com3onus8" size="55" class="PD3" value=<?echo $_SESSION['kgcom3onus8']; ?>>
       </div></td>
     </tr>
     <?                                                                }   ?>    

@@ -9,9 +9,9 @@ $_SESSION['checknumsave'] = "OFF_OFF_OFF";
 $_SESSION['idjob'] = $_POST['id_job'];
 $num_job = $_SESSION['idjob']; 
 $SQL1 = "Select *  FROM  jobother  WHERE  idcustomer = '$_SESSION[idcompanyvalue]' order by jobname asc";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL1);
+$result= mysql_query($SQL1);
 $_SESSION[totalrecord] = mysql_num_rows($result);	
 $vb=0;
 while ($row=mysql_fetch_array($result))                     {    
@@ -21,9 +21,9 @@ while ($row=mysql_fetch_array($result))                     {
 		                                                       }
 
 $SQL21 = "Select *  FROM  department order by id asc";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$resultxx= mysql_db_query($databasename,$SQL21);
+$resultxx= mysql_query($SQL21);
 $_SESSION['numrowrecord'] = mysql_num_rows($resultxx);
 $mt = 0;
          while ($row=mysql_fetch_array($resultxx)) {
@@ -37,9 +37,9 @@ if   ($_POST['Fsizz'] == "Preview" and $_SESSION[totalrecord] !=0 )    {   //  s
 
 if   ($_POST['bsizz'] == "เลือกดู")    {   //  start  if  01
           $SQL8 = "Select *  FROM  jobother  WHERE  jobnumber ='$_SESSION[idjob]'";
-          mysql_connect($host,$user,$password);
+          mysql_connect($host,$user,$password);mysql_select_db($databasename);
           mysql_query("SET NAMES TIS620");
-          $result= mysql_db_query($databasename,$SQL8);
+          $result= mysql_query($SQL8);
           while ($row=mysql_fetch_array($result)) {
                     $_SESSION['Xjobdepartment'] = $row['jobdepartment'];
                     $_SESSION['Xjobname'] = $row['jobname'];
@@ -62,9 +62,9 @@ if   ($_POST['bsizz'] == "เลือกดู")    {   //  start  if  01
 if   ($_POST['msizz'] == "แก้ไขตำแหน่งงาน")    {   //  start  if  02
           $_SESSION['check_button_edit'] = "poweron";													   
           $SQL9 = "Select *  FROM  jobother  WHERE  jobnumber ='$_SESSION[idjob]'";
-          mysql_connect($host,$user,$password);
+          mysql_connect($host,$user,$password);mysql_select_db($databasename);
           mysql_query("SET NAMES TIS620");
-          $result9= mysql_db_query($databasename,$SQL9);
+          $result9= mysql_query($SQL9);
           while ($rows=mysql_fetch_array($result9)) {
                     $_SESSION['Xjobdepartment'] = $rows['jobdepartment'];
                     $_SESSION['Xjobname'] = $rows['jobname'];
@@ -86,18 +86,18 @@ if   ($_POST['msizz'] == "แก้ไขตำแหน่งงาน")    {   //  start  if  02
 							  					   
 if   ($_POST['$qsizz'] ==  "เพิ่มตำแหน่งงานใหม่่")    {   //  start  if  03
           $_SESSION['check_button_addnew'] = "poweron";
-          mysql_connect($host,$user,$password);
+          mysql_connect($host,$user,$password);mysql_select_db($databasename);
           mysql_query("SET NAMES TIS620");
           $RTSQL = "select * from  jobother  where  idcustomer ='$_SESSION[idcompanyvalue]'";
           $YSQL = "select * from  customerbuffer  where  idcompany ='$_SESSION[idcompanyvalue]'";
-          $ycresult = mysql_db_query($databasename,$RTSQL);	
-          $result2 = mysql_db_query($databasename,$YSQL);
+          $ycresult = mysql_query($RTSQL);	
+          $result2 = mysql_query($YSQL);
           $totalrecord = mysql_num_rows($ycresult);
           while ($row=mysql_fetch_array($result2))           {
                      $Xjobpromotion = $row['jobpromotion'];
           }
           $KSQL = "select * from  product  where  idproduct ='$Xjobpromotion'";
-          $result3 = mysql_db_query($databasename,$KSQL);
+          $result3 = mysql_query($KSQL);
           while ($rowy=mysql_fetch_array($result3))         {
                     $Xposition = $rowy['position'];
           }          
@@ -230,14 +230,14 @@ function Check(){
     </tr>
      <td width="130"><div align="left"><font class="PD2">*</font>&nbsp;<span class="PD3">ชื่องาน</span></div></td>
       <td><div align="left"><input type="hidden" value=<?=$_SESSION['idjob'];  ?>  name="jobindexnumber" />
-          <input type=text class="PD3" name="jobname" size="59" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[Xjobname]) ?>>
+          <input type=text class="PD3" name="jobname" size="59" value=<?echo $_SESSION[Xjobname]; ?>>
       </div>
     </td>
     </tr>
     <tr>
       <td width="130"><div align="left"><font class="PD2">*</font>&nbsp;<span class="PD3">คุณสมบัติผู้สมัคร</span></div></td>
       <td valign="top"><div align="left">
-          <textarea name="qualification" cols="65" rows="12" class="PD3" ><?= ereg_replace(" ","&nbsp;",$_SESSION[Xqualification])  ?></textarea>
+          <textarea name="qualification" cols="65" rows="12" class="PD3" ><?echo $_SESSION[Xqualification];  ?></textarea>
      </td>
      <td valign="TOP">
      <font class="PD3"><div align="left">
@@ -308,14 +308,14 @@ function Check(){
     <tr>
       <td width="130"><div align="left"><font class="PD2">*</font>&nbsp;<span class="PD3">รายละเอียดของงาน</span></div></td>
       <td><div align="left">
-      <textarea name="jobdescription" cols="65" rows="10"  class="PD3"><?=ereg_replace(" ","&nbsp;",$_SESSION[Xjobdescription]) ?></textarea>
+      <textarea name="jobdescription" cols="65" rows="10"  class="PD3"><?echo $_SESSION[Xjobdescription]; ?></textarea>
       </div>
       </td>
     </tr>
     <tr>
       <td width="130"><div align="left"><font class="PD2">*</font>&nbsp;<span class="PD3">สถานที่ปฏิบัติงาน</span></div></td>
       <td><div align="left">
-          <input name="locationofwork" type="text" class="PD3"  size="45"  value=<?=ereg_replace(" ","&nbsp;",$_SESSION[Xlocationofwork])  ?>>
+          <input name="locationofwork" type="text" class="PD3"  size="45"  value=<?echo $_SESSION[Xlocationofwork]; ?>>
       </div></td>
     </tr>
     <tr>
@@ -466,7 +466,7 @@ function Check(){
       <td width="130"><div align="left"><font class="PD2">*</font>&nbsp;<span class="PD3">สวัสดิการ</span></div></td>
       <td><div align="left">
 
-          <textarea name="benefit" cols="65" rows="8" class="PD3" ><?=ereg_replace(" ","&nbsp;",$_SESSION[Xbenefit])  ?></textarea>
+          <textarea name="benefit" cols="65" rows="8" class="PD3" ><?echo $_SESSION[Xbenefit]; ?></textarea>
       </div></td>
     </tr>
     <tr>
@@ -484,31 +484,31 @@ function Check(){
     <tr>
       <td width="130"><div align="left"><font class="PD2">*</font>&nbsp;<span class="PD3">Job name</span></div></td>
       <td><div align="left">
-          <input type=text name="jobname_en" size="59" class="PD3" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[Xjobname_en]) ?>>
+          <input type=text name="jobname_en" size="59" class="PD3" value=<?echo $_SESSION[Xjobname_en]; ?>>
       </div></td>
     </tr>    
     <tr>
       <td width="130"><div align="left"><span class="PD2">*</span> <span class="PD3">Qualifications</span> </div></td>
       <td><div align="left">
-        <textarea name="qualification_en" cols="65" rows="10" class="PD3"><?=ereg_replace(" ","&nbsp;",$_SESSION[Xqualification_en]) ?></textarea>
+        <textarea name="qualification_en" cols="65" rows="10" class="PD3"><?echo $_SESSION[Xqualification_en]; ?></textarea>
       </div></td>
     </tr>
     <tr>
       <td width="130"><div align="left"><span class="PD2">*</span> <span class="PD3">Job Description</span> </div></td>
       <td><div align="left">
-        <textarea name="jobdescription_en" cols="65" rows="10" class="PD3" ><?=ereg_replace(" ","&nbsp;",$_SESSION[Xjobdescription_en])  ?></textarea>
+        <textarea name="jobdescription_en" cols="65" rows="10" class="PD3" ><?echo $_SESSION[Xjobdescription_en]; ?></textarea>
       </div></td>
     </tr>
     <tr>
       <td width="130"><div align="left"><span class="PD2">*</span> <span class="PD3">Location of work</span> </div></td>
       <td><div align="left">
-        <input name="locationofwork_en" type="text" class="PD3"  size="45" value=<?=ereg_replace(" ","&nbsp;",$_SESSION[Xlocationofwork_en])  ?>>
+        <input name="locationofwork_en" type="text" class="PD3"  size="45" value=<?echo $_SESSION[Xlocationofwork_en]; ?>>
       </div></td>
     </tr>
     <tr>
       <td width="130"><div align="left"><span class="PD2">*</span> <span class="PD3">Benefits </span></div></td>
       <td><div align="left">
-        <textarea name="benefit_en" cols="65" rows="8" class="PD3" ><?=ereg_replace(" ","&nbsp;",$_SESSION[Xbenefit_en])  ?></textarea>
+        <textarea name="benefit_en" cols="65" rows="8" class="PD3" ><?echo $_SESSION[Xbenefit_en]; ?></textarea>
       </div></td>
     </tr>
     <tr>

@@ -209,9 +209,9 @@ $SQL =  $SQL.",edt4_intitudename = '$_SESSION[kgintitude4]',edt4_faculty = '$_SE
 $SQL =  $SQL.",com1onus7 = '$_SESSION[kgcom1onus7]',com1onus8 = '$_SESSION[kgcom1onus8]',cccompany2 = '$_SESSION[kgcompany2]',ppposition2 = '$_SESSION[kgposition2]',com2onus1 = '$_SESSION[kgcom2onus1]',com2onus2 = '$_SESSION[kgcom2onus2]',com2onus3 = '$_SESSION[kgcom2onus3]',com2onus4 = '$_SESSION[kgcom2onus4]',com2onus5 = '$_SESSION[kgcom2onus5]',com2onus6 = '$_SESSION[kgcom2onus6]',com2onus7 = '$_SESSION[kgcom2onus7]',com2onus8 = '$_SESSION[kgcom2onus8]',company3 = '$_SESSION[kgcompany3]',position3 = '$_SESSION[kgposition3]',com3onus1 = '$_SESSION[kgcom3onus1]',com3onus2 = '$_SESSION[kgcom3onus2]',com3onus3 = '$_SESSION[kgcom3onus3]',com3onus4 = '$_SESSION[kgcom3onus4]',com3onus5 = '$_SESSION[kgcom3onus5]',com3onus6 = '$_SESSION[kgcom3onus6]',com3onus7 = '$_SESSION[kgcom3onus7]',com3onus8 = '$_SESSION[kgcom3onus8]'"; 
 $SQL =  $SQL."where idresume = '$_SESSION[resumeindex]'";  
 
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL); 
+$result= mysql_query($SQL); 
 //echo $_SESSION[resumeindex];
 //echo "<br>".$SQL;
 //$_SESSION['codereturn2'] = "T";    

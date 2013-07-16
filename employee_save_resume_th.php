@@ -3,9 +3,9 @@
 <?
 include("Allfunction.inc");
 $SQL = "Select *  FROM  employee_resume_th  WHERE  idresume ='$_SESSION[resumeindex]'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result))             {
           $check_image = $row[imageemployee];
                                                                                    } 
@@ -408,9 +408,9 @@ $SQL = $SQL."where idresume = '$_SESSION[resumeindex]'";
 
 //computerskill = '$_SESSION[dcomputerskill]',
 
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 $_SESSION['codereturn2'] = "T";
 //echo "<meta http-equiv=refresh content=0.1;url=employee_post_resume_en_new.php>";     
 echo "<script>window.location = 'employee_post_resume_en_new.php'</script>";

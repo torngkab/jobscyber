@@ -17,12 +17,12 @@ function Check(){
 <? echo gheader($_GET[lang],$_GET[atpage],$_GET[thisbanner]);  ?>
 <? echo "<div id=submenu><a href='customer_resume_view.php'>ประวัติการส่ง Resume ของลูกจ้าง</a>|<a href='customer_interview_view.php'>ประวัตินัดสัมภาษณ์ลูกจ้าง</a> | <a href='customer_check_status.php'>สถานะการเปิดอ่าน</a></div>"; ?>
 <?
-	$conn = mysql_connect($host,$user,$password);
+	$conn = mysql_connect($host,$user,$password);mysql_select_db($databasename);
 	$db_select = mysql_select_db($databasename, $conn);
 	$set_conn = mysql_query("SET NAMES TIS620");
 	//$limit = 1;
 	//$sql1 = "select * from customer_check_see_resume order by senddate asc limit 0,$limit";
-	//$result1= mysql_db_query($databasename,$sql1);
+	//$result1= mysql_query($sql1);
 	
 	//เลือกข้อมูลมาแสดง
 	$strSQL = "select * from customer_check_see_resume INNER JOIN employee_resume_th ON customer_check_see_resume.idemployee = employee_resume_th.idresume WHERE idcompany='$_SESSION[idcompanyvalue]'";

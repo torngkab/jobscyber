@@ -88,10 +88,11 @@ elseif  ($_POST[contactname] == "")     {
     echo "<meta http-equiv=refresh content=0.1;url=customerbuilddata.php> ";
     $_SESSION['returntoalert'] = 12;    
                                           }
-elseif  ($_POST['howtoapply'] == "")     {
+/*elseif  ($_POST['howtoapply'] == "")     {
     echo "<meta http-equiv=refresh content=0.1;url=customerbuilddata.php> ";
     $_SESSION['returntoalert'] = 22;    
                                           }
+*/
 elseif  ($_POST[companyname_EN] == "")    {
     echo "<meta http-equiv=refresh content=0.1;url=customerbuilddata.php> ";
     $_SESSION['returntoalert'] = 13;    
@@ -132,11 +133,12 @@ else    {  // start else
       if    ($_SESSION['checkbuttonsave'] == "true")    {     //   start  if
              $SQL1 = "update customer  set companyname = '$_SESSION[companyname]',address = '$_SESSION[address]',moo = '$_SESSION[moo]',soi = '$_SESSION[soi]',street = '$_SESSION[street]',tambon = '$_SESSION[tambon]',umphur = '$_SESSION[umphur]',province = '$_SESSION[province]',postcode = '$_SESSION[postcode]',tel = '$_SESSION[telephone]',fax = '$_SESSION[fax]',email = '$_SESSION[email]',website = '$_SESSION[website]',description = '$_SESSION[description]',contactname = '$_SESSION[contactname]',howtoapply55 = '$_SESSION[howtoapply]',companyname_en = '$_SESSION[companyname_EN]',address_en = '$_SESSION[address_EN]',moo_en = '$_SESSION[moo_EN]',soi_en = '$_SESSION[soi_EN]',street_en = '$_SESSION[street_EN]',tambon_en = '$_SESSION[tambon_EN]',umphur_en = '$_SESSION[umphur_EN]',profile_en = '$_SESSION[profile_EN]',contactname_en = '$_SESSION[contactname_EN]',companyname_en = '$_SESSION[companyname_EN]'  where idcompany = '$_SESSION[idcompanyvalue]'";
              $SQL2 = "update customerbuffer  set companyname = '$_SESSION[companyname]',address = '$_SESSION[address]',moo = '$_SESSION[moo]',soi = '$_SESSION[soi]',street = '$_SESSION[street]',tambon = '$_SESSION[tambon]',umphur = '$_SESSION[umphur]',province = '$_SESSION[province]',postcode = '$_SESSION[postcode]',tel = '$_SESSION[telephone]',fax = '$_SESSION[fax]',email = '$_SESSION[email]',website = '$_SESSION[website]',description = '$_SESSION[description]',contactname = '$_SESSION[contactname]',howtoapply55 = '$_SESSION[howtoapply]',companyname_en = '$_SESSION[companyname_EN]',address_en = '$_SESSION[address_EN]',moo_en = '$_SESSION[moo_EN]',soi_en = '$_SESSION[soi_EN]',street_en = '$_SESSION[street_EN]',tambon_en = '$_SESSION[tambon_EN]',umphur_en = '$_SESSION[umphur_EN]',profile_en = '$_SESSION[profile_EN]',contactname_en = '$_SESSION[contactname_EN]',companyname_en = '$_SESSION[companyname_EN]'  where idcompany = '$_SESSION[idcompanyvalue]'"; 
-             mysql_connect($host,$user,$password);
+             mysql_connect($host,$user,$password);mysql_select_db($databasename);
              mysql_query("SET NAMES TIS620");
-             $result1= mysql_db_query($databasename,$SQL1);
-             $result2= mysql_db_query($databasename,$SQL2);
+             $result1= mysql_query($SQL1);
+             $result2= mysql_query($SQL2);
              $_SESSION['checkbuttonsave'] = "false";
+			 echo "<meta http-equiv=refresh content=0.1;url='customerbuilddata.php'>";
                                                                                              }  //  end  if
                                                          
                                        }  

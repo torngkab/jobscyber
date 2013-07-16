@@ -8,15 +8,15 @@ $_SESSION['rrrusername'] = $_POST['Gusername'];
 $_SESSION['rrrpassword'] = $_POST['Gpassword'];
 
 $SQL = "Select *  FROM  manager where kkusername='$_POST[Gusername]'";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result))   {        //   start while 1
           $BBG_manager_login = $row['email'];
                                                                           }       //    end while 1
 
 $SQL2 = "Select *  FROM  manager  WHERE  kkpassword ='$_POST[Gpassword]'";
-$result2= mysql_db_query($databasename,$SQL2);
+$result2= mysql_query($SQL2);
 while ($rowz=mysql_fetch_array($result2)) {     //   start while 2
           $BBG_manager_password = $rowz["email"];
                                                                            }     //   end  while 2

@@ -18,19 +18,19 @@ $_SESSION['Xjobdescription_en'] = $_POST['jobdescription_en'];
 $_SESSION['Xlocationofwork_en'] = $_POST['locationofwork_en'];
 $_SESSION['Xbenefit_en'] = $_POST['benefit_en']; 
 
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 
 $GSQL = "select * from  joblist  where  idcustomer ='$buffer_idcus'";
 $YSQL = "select * from  customer  where  idcompany ='$buffer_idcus'";
-$result = mysql_db_query($databasename,$GSQL);
-$result2 = mysql_db_query($databasename,$YSQL);
+$result = mysql_query($GSQL);
+$result2 = mysql_query($YSQL);
 $maxposition = mysql_num_rows($result);
 while ($row=mysql_fetch_array($result2))         {
            $Xjobpromotion = $row['jobpromotion'];
                                                                                  }  
 $KSQL = "select * from  product  where  idproduct ='$Xjobpromotion'";
-$result3 = mysql_db_query($databasename,$KSQL);
+$result3 = mysql_query($KSQL);
 while ($rowy=mysql_fetch_array($result3))         {
            $Xposition = $rowy['position'];
                                                                                    }
@@ -110,8 +110,8 @@ if   ($_POST['cgicommand']=="editmode")     {
              $SQL2 = "update jobother set jobname = '$Xjobname',qualification = '$Xqualification',jobdepartment = '$Xjobdepartment',yearexp = '$Xyearexp',jobdescription = '$Xjobdescription',locationofwork = '$Xlocationofwork',numberofposition = '$Xnumberofposition',salary = '$Xsalary',benefit = '$Xbenefit',jobname_en = '$Xjobname_en',qualification_en = '$Xqualification_en',jobdescription_en = '$Xjobdescription_en',locationofwork_en = '$Xlocationofwork_en',benefit_en = '$Xbenefit_en' where jobnumber = '$Xjobindexnumber'";
                                                                               }
 												
-$result= mysql_db_query($databasename,$SQL);
-$result2= mysql_db_query($databasename,$SQL2);      
+$result= mysql_query($SQL);
+$result2= mysql_query($SQL2);      
                      }  //  end  else
 ?>
 <meta http-equiv=refresh content='0.1;url=customerbuildjob.php'>

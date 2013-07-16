@@ -33,9 +33,9 @@ function checkblank()  {
 <select name=gdepartment>
 <?
 $sqlstr = "Select *  FROM  department";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$sqlstr);
+$result= mysql_query($sqlstr);
 ?>
 <?  if   ($_GET[lang] !="en")   { 						 
            while ($row=mysql_fetch_array($result)) {  ?>
@@ -55,8 +55,9 @@ $Gcount = 0;
 $atMonth = date("m");
 $atyear = date("Y");
 $sqlstr = "Select *  FROM  dddcounter  WHERE  month(datecount) ='$atMonth'  And year(datecount) ='$atyear'";
-mysql_connect($host,$user,$password);
-$result= mysql_db_query($databasename,$sqlstr);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+mysql_select_db($databasename);
+$result= mysql_query($sqlstr);
 $nrow=mysql_num_rows($result);
 while ($row=mysql_fetch_array($result)) {
          $Gcount = $row[amount];
@@ -67,23 +68,23 @@ while ($row=mysql_fetch_array($result)) {
 if  ($Gcount != "")  {
     $Gcount = $Gcount + 1;
     $sqlstr1 = "update dddcounter  set amount = '$Gcount' where Month(datecount) = '$atMonth'  And Year(datecount) ='$atyear'"; 
-    mysql_connect($host,$user,$password);
-    $result2= mysql_db_query($databasename,$sqlstr1);
+    mysql_connect($host,$user,$password);mysql_select_db($databasename);
+    $result2= mysql_query($sqlstr1);
                                }
 else						 
                                {						 
     $Gcount = 1;
     $MMC = date("Y-m-d");
     $sqlstr2 = "insert  into  dddcounter(datecount,amount) values ('$MMC','$Gcount')";
-    mysql_connect($host,$user,$password);
-    $result3= mysql_db_query($databasename,$sqlstr2);
+    mysql_connect($host,$user,$password);mysql_select_db($databasename);
+    $result3= mysql_query($sqlstr2);
                                }
 ?>
 <?
 $sqlstr = "Select *  FROM  department";
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
-$result= mysql_db_query($databasename,$sqlstr);
+$result= mysql_query($sqlstr);
 ?>
 <br>						 
 <table border="0"  bordercolor="RGB(120,206,49)" cellspacing="0"  width="90%">
@@ -383,7 +384,7 @@ else  {    ?>
 <br>
 <br>
 <div align="center">
-หน้าแรก | ฝากประวัติ  | ค้นหาพนักงาน  | เกี่ยวกับเรา  | ติดต่อเรา | อัตราโฆษณา
+<a href="firstpage.php">หน้าแรก</a> | <a href="employee_login_page.php">ฝากประวัติ</a>  | <a href="customer.php">ค้นหาพนักงาน</a>  | <a href="#">เกี่ยวกับเรา</a>  | <a href="contactus.php">ติดต่อเรา</a> | <a href="adperpay.php">อัตราโฆษณา</a>
 </div>
 <br>
 <br>

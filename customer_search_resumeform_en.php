@@ -1,10 +1,10 @@
 <?
 session_start();
        include("Allfunction.inc");
-       mysql_connect($host,$user,$password);
+       mysql_connect($host,$user,$password);mysql_select_db($databasename);
        mysql_query("SET NAMES TIS620");
        $SQL1 = "Select *  FROM  employee_resume_en  WHERE  idresume ='$_GET[resumeindex]'";
-       $result01= mysql_db_query($databasename,$SQL1);
+       $result01= mysql_query($SQL1);
        while ($xrow=mysql_fetch_array($result01)) {
           $_SESSION[kgfirstname] = $xrow['firstname'];
           $_SESSION[kglastname] = $xrow['lastname'];            
@@ -84,10 +84,10 @@ $_SESSION['age'] = (date("Y")+543)-$_SESSION['birthyear'];
 ?>
 
 <?
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $SQL = "Select *  FROM  emp_img  WHERE  idresume = '$_SESSION[resumeindex]'";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($row=mysql_fetch_array($result)) {
 $_SESSION['image'] = $row['data'];
 }

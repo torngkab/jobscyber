@@ -11,15 +11,15 @@ $month1=date("m");
 $day1=date("d");
 $timetoday = ($year1*10000) + ($month1*100) + $day1; 
 
-mysql_connect($host,$user,$password);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
 mysql_query("SET NAMES TIS620");
 $SQL = "Select *  FROM  employee_resume_th  WHERE  userloginname = '$_POST[newlogin]'";
-$result= mysql_db_query($databasename,$SQL);
+$result= mysql_query($SQL);
 while ($rowx=mysql_fetch_array($result))          {
 $checklogin = $rowx['firstname'];
                                                                                   }
 $SQL2 = "Select *  FROM  employee_resume_th  WHERE  userpassword = '$_POST[newpassword]'";
-$result2= mysql_db_query($databasename,$SQL2);
+$result2= mysql_query($SQL2);
 while ($rowc=mysql_fetch_array($result2))          {
 $checkpassword = $rowc['firstname'];
                                                                                     }
@@ -29,7 +29,7 @@ for($i=1;$i<=26;$i++)  {
      $m = $m.$j;
                                       }
 $SQL3 = "Select *  FROM  employee_resume_th  WHERE  idresume = '$m'";
-$result3= mysql_db_query($databasename,$SQL3);
+$result3= mysql_query($SQL3);
 while ($rowg=mysql_fetch_array($result3))          {
 $checkidresume = $rowg['idresume'];
                                                                                     }
@@ -72,8 +72,8 @@ else if  ($_POST[againpassword] == "")  {
 else  {
              $SQL = "insert  into  employee_resume_th(idresume,userloginname,userpassword,resumesignup,resumeupdate) values('$m','$_POST[newlogin]','$_POST[newpassword]','$timetoday','$timetoday')";
              $SQL2 = "insert  into  employee_resume_en(idresume,resumesignup,resumeupdate) values('$m','$timetoday','$timetoday')";
-             $result= mysql_db_query($databasename,$SQL);
-             $result2= mysql_db_query($databasename,$SQL2);
+             $result= mysql_query($SQL);
+             $result2= mysql_query($SQL2);
              $_SESSION['codereturn1'] = "T";
 			 echo "<script>alert('Login&Password สามารถใช้งานได้แล้วครับ');</script>";
              echo "<meta http-equiv=refresh content='0.1;url=employee_login_page.php'>";

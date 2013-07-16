@@ -8,14 +8,14 @@ $_SESSION['xxyourmail']=$_POST['yourmail'];
 												    
 $have_pincode = "";
 $SQL2 = "Select *  FROM  imagecode  WHERE  imagename ='$var_pincode'";
-mysql_connect($host,$user,$password);
-$result2= mysql_db_query($databasename,$SQL2);
+mysql_connect($host,$user,$password);mysql_select_db($databasename);
+$result2= mysql_query($SQL2);
 while ($row2=mysql_fetch_array($result2)) {
           $have_pincode = $row2['code'];
                                                                     }
 
 $SQL4 = "Select *  FROM  employee_resume_th  WHERE  emailaddress ='$var_email'";
-$result4= mysql_db_query($databasename,$SQL4);
+$result4= mysql_query($SQL4);
 while ($row4=mysql_fetch_array($result4)) {
           $kk_login = $row4['userloginname'];
           $kk_password = $row4['userpassword'];

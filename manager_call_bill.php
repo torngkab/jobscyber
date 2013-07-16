@@ -49,9 +49,9 @@ function OnSort(){
 	//echo $text."<br>";
 	//echo $tmp1."<br>";echo $tmp2."<br>";echo $_SESSION[T]."<br>";echo $sort."<br>";
 	$sql1 = "select * from customer INNER JOIN product ON customer.jobpromotion=product.idproduct WHERE signuptime>=$tmp1 and signuptime<=$tmp2 order by $sort";
-	$conn = mysql_connect($host,$user,$password);
+	$conn = mysql_connect($host,$user,$password);mysql_select_db($databasename);mysql_select_db($databasename);mysql_select_db($databasename);
 	$set_conn = mysql_query("SET NAMES TIS620");
-	$result1= mysql_db_query($databasename,$sql1);
+	$result1= mysql_query($sql1);
 	
 ?>	
 	<form name="frm1" action="manager_call_bill.php" method="get">
